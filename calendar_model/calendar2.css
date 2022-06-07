@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+.calendar {
+    display: grid;
+
+    grid-template-rows: 1fr 0.5fr 5fr;
+}
+
+.titleRow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border: 1px solid;
+}
+
+.dayHeaderRow {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+}
+.dayHeader {
+    border: 1px solid;
+
+    overflow: hidden;
+}
+
+.dayTable {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+.day {
+    border: 1px solid;
+}
