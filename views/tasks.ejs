@@ -40,23 +40,23 @@
                     <h2>Create New Task</h2>
                     <section>
                         <label for="task-name">Name:</label>
-                        <input name="task-name" id="task-name" type="text" maxlength="50" required="true" placeholder="Enter name here">
+                        <input name="taskName" id="task-name" type="text" maxlength="50" required="true" placeholder="Enter name here">
                     </section>
                     <section>
                         <label for="task-description">Description:</label>
-                        <input name="task-description" id="task-description" type="text" maxlength="100" required="false" placeholder="Optional">
+                        <input name="taskDescription" id="task-description" type="text" maxlength="100" required="false" placeholder="Optional">
                     </section>
                     <section>
                         <label for="task-start-time">Start Time:</label>
-                        <input name="task-start-time" id="task-start-time" type="datetime-local" required="true">
+                        <input name="taskStartTime" id="task-start-time" type="datetime-local" required="true">
                     </section>
                     <section>
                         <label for="task-end-time">End Time:</label>
-                        <input name="task-end-time" id="task-end-time" type="datetime-local" required="false">
+                        <input name="taskEndTime" id="task-end-time" type="datetime-local" required="false">
                     </section>
                     <section>
                         <label for="task-color">Color:</label>
-                        <input name="task-color" id="task-color" type="color" required="false">
+                        <input name="taskColor" id="task-color" type="color" required="false">
                     </section>
                     <section>
                         <button type="submit">Create Task</button>
@@ -67,20 +67,21 @@
         </div>
 
         <section class="task-display">
-            <% for(let i = 0; i < arr.size; ++i) { %>
+            <h1>Tasks</h1>
+            <% for(let i = 0; i < info.length; ++i) { %>
                 <section>
                     <ul>
                         <li>
-                            <%= taskName %>
+                            <span><%= info[i].name %></span>
                         </li>
                         <li>
-                            <%= taskDesc %>
+                            <span><%= info[i].description %></span>
                         </li>
                         <li>
-                            <%= taskStart %>
+                            <span><%= info[i].startTime %></span>
                         </li>
                         <li>
-                            <%= taskEnd %>
+                            <span><%= info[i].endTime %></span>
                         </li>
                     </ul>
                 </section>
