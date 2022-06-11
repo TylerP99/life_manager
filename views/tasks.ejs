@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasks</title>
 
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/tasks.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/tasks.css">
 </head>
 <body>
     
@@ -35,7 +35,7 @@
             <div>
                 <button name="add-task" id="add-task" type="menu">+</button>
             </div>
-            <div class="hidden">
+            <div id="add-task-menu" class="hidden">
                 <form action="/create/task" method="post">
                     <h2>Create New Task</h2>
                     <section>
@@ -89,6 +89,6 @@
         </section>
 
     </main>
-
+<script src="js/tasks.js"></script>
 </body>
 </html>

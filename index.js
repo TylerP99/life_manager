@@ -6,11 +6,12 @@ const app = express();
 app.set("view engine","ejs");
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(express.static('public'));
 
 const dbName = "tasks";
 const dbConnectionString = process.env.DB_STRING;
 let db;
-const PORT = 3000;
+const PORT = 3100;
 
 MongoClient.connect(dbConnectionString, {useUnifiedTopology: true})
            .then(client => {
@@ -29,14 +30,18 @@ app.get("/tasks", (req, res) => {
           console.error(err);
       })
 });
+app.get("/public/css/reset.css", (req,res) => {
+    console.log("Reqesting reset")
+    res.sendFile(__dirname + "/public/css/reset.css");
+})
 
 app.post("/create/task", (req, res) => {
     //Info should be valid if user sent it, validate on client side please
     const reqName = req.body.taskName;
     const reqDesc = req.body.taskDescription;
-    const reqStart = req.body.taskStartTime;
-    const reqEnd = req.body.taskEndTime;
-    const reqColor = req.body.taskEndTime;
+    const reqStart = new Date(req.body.taskStartTime);
+    const reqEnd = new Date(req.body.taskEndTime);
+    const reqColor = req.body.taskColor;
     const task = new Task(reqName, reqDesc, reqStart, reqEnd, reqColor);
 
     //Add to db (user func comes next)

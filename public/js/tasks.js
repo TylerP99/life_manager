@@ -12,6 +12,14 @@ class Task {
 // Need to interface this with calendar somehow later. Actually calendar interfacing should be generic if this app expands
 
 
-class Task_Display {
-    
+//Test driver code for basic functional task page
+
+document.querySelector("#add-task").addEventListener("click", openTaskCreation)
+
+
+function openTaskCreation(event) {
+    const taskCreationMenu = document.querySelector("#add-task-menu");
+
+    taskCreationMenu.classList.toggle("hidden");
+    taskCreationMenu.classList.toggle("activated");
 }
