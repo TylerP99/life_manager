@@ -35,6 +35,14 @@ app.get("/public/css/reset.css", (req,res) => {
     res.sendFile(__dirname + "/public/css/reset.css");
 })
 
+
+app.get("/register", (req,res) => {
+    res.render("signup.ejs")
+})
+app.get("/login", (req,res)=> {
+    res.render("login.ejs")
+})
+
 app.post("/create/task", (req, res) => {
     //Info should be valid if user sent it, validate on client side please
     const reqName = req.body.taskName;
