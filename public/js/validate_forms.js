@@ -43,8 +43,9 @@ function validatePassword(event) {
 }
 
 //USERNAME HANDLER
-usernameField.addEventListener("change", validatePasswordConf);
+passwordConfField.addEventListener("change", validatePasswordConf);
 
 function validatePasswordConf(event) {
     //Should match password
+    console.log(event.target);
 }
