@@ -64,6 +64,33 @@ app.post("/create/task", (req, res) => {
       })
 });
 
+// SIGN UP FORM HANDLER
+app.post("/user/signup", (req, res) => {
+    // Grab form data for validation
+    const formData = {
+        username: req.body.usernameField,
+        email: req.body.emailField,
+        password: req.body.passwordField,
+        passwordConf: req.body.passwordConfField
+    }
+
+    //Is form complete?
+    if( !formData.username || !formData.email || !formData.password || !formData.passwordConf )
+    {
+        return res.status(400); // Incomplete fields
+    }
+
+    // Valid username?
+
+
+    // Valid email?
+
+
+    // Valid password? (conf matches?)
+
+
+});
+
 app.listen(process.env.PORT || PORT, _ => {
     console.log(`Server running on port ${PORT}`)
 })
