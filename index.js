@@ -87,7 +87,10 @@ app.post("/user/signup", (req, res) => {
 
 
     // Valid password? (conf matches?)
-
+    if(formData.password !== formData.passwordConf)
+    {
+        return res.status(400);
+    }
 
 });
 
