@@ -77,14 +77,13 @@ app.post("/user/signup", (req, res) => {
     //Is form complete?
     if( !formData.username || !formData.email || !formData.password || !formData.passwordConf )
     {
-        return res.status(400); // Incomplete fields
+        return res.status(400); // Incomplete fields, send error
     }
 
     // Valid username?
 
 
     // Valid email?
-
 
     // Valid password? (conf matches?)
     if(formData.password !== formData.passwordConf)
