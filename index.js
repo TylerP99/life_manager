@@ -82,7 +82,7 @@ app.post("/user/signup", (req, res) => {
 
     // Valid username?
 
-
+//I need to push code i am actually autistic
     // Valid email?
 
     // Valid password? (conf matches?)
