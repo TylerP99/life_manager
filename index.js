@@ -25,10 +25,11 @@ MongoClient.connect(dbConnectionString, {useUnifiedTopology: true})
                db = client.db(dbName);
            })
 
-
+//=====================================================================================================================//
 //
 // Tasks Page/Route
 //
+// Read tasks
 app.get("/tasks", (req, res) => {
     //Get task data from db
     db.collection("task-list").find().toArray()
@@ -40,6 +41,7 @@ app.get("/tasks", (req, res) => {
       })
 });
 
+// Create tasks
 app.post("/create/task", (req, res) => {
     //Info should be valid if user sent it, validate on client side please
     const reqName = req.body.taskName;
@@ -61,35 +63,74 @@ app.post("/create/task", (req, res) => {
       })
 });
 
+//Edit/update task
+
+//Delete task
+
+//=====================================================================================================================//
+
+//=====================================================================================================================//
 //
-// SIGN UP FORM HANDLER
+// SIGN UP FORM HANDLER (Create Account)
 //
 app.post("/user/signup", (req, res) => {
-    // Grab form data for validation
-    const formData = {
-        username: req.body.usernameField,
-        email: req.body.emailField,
-        password: req.body.passwordField,
-        passwordConf: req.body.passwordConfField
+    // Get form data from request
+    const userData = {
+        username:req.body.username,
+        email:req.body.email,
+        password:req.body.password,
+        passwordConfirmation:req.body.passwordConf,
     }
 
-    //Is form complete?
-    if( !formData.username || !formData.email || !formData.password || !formData.passwordConf )
-    {
-        return res.status(400); // Incomplete fields, send error
-    }
+    // Validate form info
+    // Validate name
 
-    // Valid username?
+    // Validate email
+    // Confirmation email? Best way to validate i guess
+    // Ensure email is unique
 
-    // Valid email?
+    // Validate password
+    // 8 char minimum
+    // PasswordConf matches
 
-    // Valid password? (conf matches?)
-    if(formData.password !== formData.passwordConf)
-    {
-        return res.status(400);
-    }
+    // Hash password
 
+    // If valid, create new db entry for user
+
+    // then provide some feedback that an account was create
+
+    // If invalid, provide some feedback for what is invalid
 });
+
+//
+// SIGN IN FORM HANDLER (Read Account Info)
+//
+app.post("/user/signin", (req, res) => {
+    // Get form info from request
+
+    // Hash password with cryptography middleware
+
+    // Get saved hashed password from db
+
+    // Compare hashed passwords
+
+    // If they match, allow login
+
+    // If they do not match, give user feedback
+})
+
+//
+// USER SETTINGS
+//
+//
+// CHANGE ACCOUNT INFO (Update Account Info)
+//
+// Allow name, email, password to be changed
+//
+// DELETE ACCOUNT
+//
+// With double confirmation, allow user to delete account
+//=====================================================================================================================//
 
 app.get("/public/css/reset.css", (req,res) => {
     console.log("Reqesting reset")

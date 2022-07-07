@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/signin.css">
 </head>
 <body>
     
     <main>
-        <h1>Log In</h1>
+        <h1>Sign In</h1>
 
-        <form action="/user/login" method="post">
+        <form action="/user/login" method="post" id="signin-form">
             <section>
                 <label for="email">Email</label>
                 <input type="email" id="email field" name="email" placeholder="Email" required autocomplete="email">
@@ -25,7 +27,7 @@
             </section>
         </form>
 
-        <p>Don't have an account? <a href="/register">Register here</a></p>
+        <p>Don't have an account? <a href="./signup.html">Register here</a></p>
     </main>
      
 </body>
