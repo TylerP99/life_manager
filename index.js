@@ -2,16 +2,22 @@ const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
+// 
+// Middle-wares and such
+//
 const app = express();
 app.set("view engine","ejs");
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+//
+// MongoDB connection
+//
 const dbName = "tasks";
 const dbConnectionString = process.env.DB_STRING;
 let db;
-const PORT = 3100;
+const PORT = 3010;
 
 MongoClient.connect(dbConnectionString, {useUnifiedTopology: true})
            .then(client => {
@@ -20,6 +26,9 @@ MongoClient.connect(dbConnectionString, {useUnifiedTopology: true})
            })
 
 
+//
+// Tasks Page/Route
+//
 app.get("/tasks", (req, res) => {
     //Get task data from db
     db.collection("task-list").find().toArray()
@@ -33,14 +42,6 @@ app.get("/tasks", (req, res) => {
 app.get("/public/css/reset.css", (req,res) => {
     console.log("Reqesting reset")
     res.sendFile(__dirname + "/public/css/reset.css");
-})
-
-
-app.get("/register", (req,res) => {
-    res.render("signup.ejs")
-})
-app.get("/login", (req,res)=> {
-    res.render("login.ejs")
 })
 
 app.post("/create/task", (req, res) => {
@@ -82,7 +83,6 @@ app.post("/user/signup", (req, res) => {
 
     // Valid username?
 
-//I need to push code i am actually autistic
     // Valid email?
 
     // Valid password? (conf matches?)
@@ -97,6 +97,10 @@ app.listen(process.env.PORT || PORT, _ => {
     console.log(`Server running on port ${PORT}`)
 })
 
+
+//
+// Task Class lmao
+//
 class Task {
     DEFAULT_DESC = "";
     DEFAULT_END = "";
