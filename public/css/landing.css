@@ -64,7 +64,9 @@ main {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 50%;
+
+    margin-bottom: 50px;
 }
 
 #signup-button, #signin-button {
@@ -87,6 +89,10 @@ main {
 }
 #signin-button:hover {
 
+}
+
+.site-info-container {
+    font-size: 2rem;
 }
 
 
