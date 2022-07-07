@@ -39,10 +39,6 @@ app.get("/tasks", (req, res) => {
           console.error(err);
       })
 });
-app.get("/public/css/reset.css", (req,res) => {
-    console.log("Reqesting reset")
-    res.sendFile(__dirname + "/public/css/reset.css");
-})
 
 app.post("/create/task", (req, res) => {
     //Info should be valid if user sent it, validate on client side please
@@ -65,7 +61,9 @@ app.post("/create/task", (req, res) => {
       })
 });
 
+//
 // SIGN UP FORM HANDLER
+//
 app.post("/user/signup", (req, res) => {
     // Grab form data for validation
     const formData = {
@@ -93,9 +91,16 @@ app.post("/user/signup", (req, res) => {
 
 });
 
+app.get("/public/css/reset.css", (req,res) => {
+    console.log("Reqesting reset")
+    res.sendFile(__dirname + "/public/css/reset.css");
+})
+
 app.listen(process.env.PORT || PORT, _ => {
     console.log(`Server running on port ${PORT}`)
 })
+
+
 
 
 //
