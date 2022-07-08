@@ -47,7 +47,11 @@ app.get("/tasks", (req, res) => {
           console.error(err);
       })
 });
-
+//
+//
+// NOTE: NEED TO CONNECT TASK TO PROPER DB, REDO TASK OBJECT TO USE USER UID
+//
+//
 // Create tasks
 app.post("/create/task", (req, res) => {
     //Info should be valid if user sent it, validate on client side please
