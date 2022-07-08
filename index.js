@@ -190,18 +190,79 @@ app.post("/user/signup", async (req, res) => {
 //
 // SIGN IN FORM HANDLER (Read Account Info)
 //
-app.post("/user/signin", (req, res) => {
+app.post("/user/signin", async (req, res) => {
     // Get form info from request
+    const userInfo = {
+        email:req.body.email,
+        password:req.body.password
+    }
 
-    // Hash password with cryptography middleware
+    const errorInfo = {
+        emailErrors:{
+            emptyField:false,
+            userDoesNotExist:false,
+        },
+        passwordErrors:{
+            emptyField:false,
+            passwordDoesNotMatch:false,
+        },
+    }
 
-    // Get saved hashed password from db
+    let valid = true;
+
+    // Check fields are filled
+    if(!userInfo.email)
+    {
+        // Empty email field
+        errorInfo.emailErrors.emptyField = true;
+        valid = false;
+    }
+
+    if(!userInfo.password)
+    {
+        // Empty password field
+        errorInfo.passwordErrors.emptyField = true;
+        valid = false;
+    }
 
     // Compare hashed passwords
+    // Get user from db
+    const user = await db.collection(userCollection)
+                         .findOne( {"email": userInfo.email});
+    
+    // Check if user was found or no
+    if(user)
+    {
+        // User was found, compare password
+        const match = bcrypt.compare(userInfo.password, user.password);
 
-    // If they match, allow login
+        if(!match)
+        {
+            // Passwords dont match
+            errorInfo.passwordErrors.passwordDoesNotMatch;
+            valid = false;
+        }
+    }
+    else
+    {
+        // User not found
+        errorInfo.emailErrors.userDoesNotExist = true;
+        valid = false;
+    }
 
-    // If they do not match, give user feedback
+    if(valid)
+    {
+        // Login
+        // I think i need passport here?
+
+        res.redirect("/dashboard")
+    }
+    else
+    {
+        // Give feedback
+        console.log("Login errors");
+        res.json(errorInfo);
+    }
 })
 
 //
@@ -220,6 +281,10 @@ app.post("/user/signin", (req, res) => {
 app.get("/public/css/reset.css", (req,res) => {
     console.log("Reqesting reset")
     res.sendFile(__dirname + "/public/css/reset.css");
+})
+
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard.ejs")
 })
 
 app.listen(process.env.PORT || PORT, _ => {
