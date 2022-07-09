@@ -21,6 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+// User Schema
+const User = require("./models/User");
+
+// Task Schema
+const Task = require("./models/Task");
+
 // Bcrypt
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -55,8 +61,7 @@ const LocalStrategy = passportLocal.Strategy;
 passport.use(new LocalStrategy(
     {usernameField:"email"},
     async function verifyCredentials(email, password, done) {
-        const user = await db.collection(userCollection)
-                            .findOne({"email": email});
+        const user = await User.findOne({"email": email});
 
         if(user)
         {
@@ -89,9 +94,9 @@ passport.serializeUser((user,done) => {
 });
 
 passport.deserializeUser(async (id,done) => {
-    const user = await db.collection(userCollection).findOne({_id:id});
+    const user = await User.findById(id);
     console.log(`Deserialize user user obj ${user}`);
-    done(null,user)
+    done(null,user);
 })
 //
 //
@@ -211,7 +216,7 @@ app.listen(process.env.PORT || PORT, _ => {
 //
 // Task Class lmao
 //
-class Task {
+class Tasks {
     DEFAULT_DESC = "";
     DEFAULT_END = "";
     DEFAULT_COLOR = "#000";
