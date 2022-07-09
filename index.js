@@ -135,65 +135,6 @@ app.use(passport.session());
 //
 //
 //============================================================================================================//
-//============================================================================================================//
-//
-// Tasks Page/Route
-//
-// Read tasks
-app.get("/tasks", (req, res) => {
-    //Get task data from db
-    db.collection("task-list").find().toArray()
-      .then(data => {
-          res.render("tasks.ejs", {info : data});
-      })
-      .catch(err => {
-          console.error(err);
-      })
-});
-//
-//
-// NOTE: NEED TO CONNECT TASK TO PROPER DB, REDO TASK OBJECT TO USE USER UID
-//
-//
-// Create tasks
-app.post("/create/task", (req, res) => {
-    //Info should be valid if user sent it, validate on client side please
-    const reqName = req.body.taskName;
-    const reqDesc = req.body.taskDescription;
-    const reqStart = new Date(req.body.taskStartTime);
-    const reqEnd = new Date(req.body.taskEndTime);
-    const reqColor = req.body.taskColor;
-    const task = new Task(reqName, reqDesc, reqStart, reqEnd, reqColor);
-
-    //Add to db (user func comes next)
-    db.collection(tasksCollection)     //Get collection
-      .insertOne(task)  //Insert task object
-      .then( result => {
-          console.log("Added task");
-          res.redirect("/tasks");
-      })
-      .catch(err=> {
-          console.error(err);
-      })
-});
-
-//Edit/update task
-
-//Delete task
-
-//=====================================================================================================================//
-//
-// USER SETTINGS
-//
-//
-// CHANGE ACCOUNT INFO (Update Account Info)
-//
-// Allow name, email, password to be changed
-//
-// DELETE ACCOUNT
-//
-// With double confirmation, allow user to delete account
-//=====================================================================================================================//
 
 // Root Routes
 app.use("/", require("./routes/index.js"));
