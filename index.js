@@ -195,24 +195,18 @@ app.post("/create/task", (req, res) => {
 // With double confirmation, allow user to delete account
 //=====================================================================================================================//
 
-app.get("/public/css/reset.css", (req,res) => {
-    console.log("Reqesting reset")
-    res.sendFile(__dirname + "/public/css/reset.css");
-})
-
-app.get("/dashboard", (req, res) => {
-    res.render("dashboard.ejs")
-})
-
 // Root Routes
-app.use("/", require("./routes/index.js"))
+app.use("/", require("./routes/index.js"));
 
 // User route
-app.use("/user", require("./routes/user.js"))
+app.use("/user", require("./routes/user.js"));
+
+// Account API Route
+app.use("/account", require("./routes/account.js"));
 
 app.listen(process.env.PORT || PORT, _ => {
-    console.log(`Server running on port ${PORT}`)
-})
+    console.log(`Server running on port ${PORT}`);
+});
 
 
 
