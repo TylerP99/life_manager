@@ -1,10 +1,15 @@
 // Handles routes for tasks crud app
+
+const express = require("express");
+const router = express.Router();
+
+
 //============================================================================================================//
 //
 // Tasks Page/Route
 //
 // Read tasks
-app.get("/tasks", (req, res) => {
+router.get("/tasks", (req, res) => {
     //Get task data from db
     db.collection("task-list").find().toArray()
       .then(data => {
@@ -20,7 +25,7 @@ app.get("/tasks", (req, res) => {
 //
 //
 // Create tasks
-app.post("/create/task", (req, res) => {
+router.post("/create/task", (req, res) => {
     //Info should be valid if user sent it, validate on client side please
     const reqName = req.body.taskName;
     const reqDesc = req.body.taskDescription;
@@ -40,3 +45,5 @@ app.post("/create/task", (req, res) => {
           console.error(err);
       })
 });
+
+module.exports = router;
