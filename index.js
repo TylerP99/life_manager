@@ -85,11 +85,11 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser((user,done) => {
-    done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser(async (id,done) => {
-    const user = await db.collection(userCollection).findOne({id:id});
+    const user = await db.collection(userCollection).findOne({_id:id});
     console.log(`Deserialize user user obj ${user}`);
     done(null,user)
 })
