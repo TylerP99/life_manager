@@ -151,24 +151,3 @@ app.use("/task", require("./routes/tasks.js"));
 app.listen(process.env.PORT || PORT, _ => {
     console.log(`Server running on port ${PORT}`);
 });
-
-
-
-
-//
-// Task Class lmao
-//
-class Tasks {
-    DEFAULT_DESC = "";
-    DEFAULT_END = "";
-    DEFAULT_COLOR = "#000";
-
-    constructor(name, description, start, end, color)
-    {
-        this.name = name; // String, idk char limit yet. 50 seems reasonable
-        this.description = description || DEFAULT_DESC; // String (text field for db semantics) (limit unclear right now)
-        this.startTime = start;  // Should be a date object
-        this.endTime = end || this.DEFAULT_END; // Should be a date object
-        this.color = color; // Should be a hex code probably
-    }
-}
