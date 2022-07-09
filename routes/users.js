@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 
+// NEED TO IMPORT USER SCHEMA WHEN CREATED
 
 //==============================//
 //      User Registration       //
@@ -146,3 +147,5 @@ router.get("user/logout", (req, res) => {
     req.logout();
     req.flash('success_msg', "You have been logged out!")
 });
+
+module.exports(router);
