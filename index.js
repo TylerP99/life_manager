@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
-//            Bcrypt
+// Bcrypt
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -31,16 +31,16 @@ const saltRounds = 10;
 //
 const dbName = "LifeManager"; // Connect to DB
 const dbConnectionString = process.env.DB_STRING; // Connect to Cluster
-const userCollection = "LM-users";
-const tasksCollection = "LM-tasks";
-let db;
+// const userCollection = "LM-users";
+// const tasksCollection = "LM-tasks";
+// let db;
 
-// Connect to mongo
-MongoClient.connect(dbConnectionString, {useUnifiedTopology: true})
-           .then(client => {
-               console.log(`Connected to ${dbName} database`);
-               db = client.db(dbName);
-           });
+// Connect to life manager database
+mongoose.connect(dbConnectionString, { useNewUrlParser: true ,useUnifiedTopology: true})
+        .then(() => console.log(`Connected to ${dbName} database`))
+        .catch(err => {
+            console.error(err)
+        });
 //
 //
 //

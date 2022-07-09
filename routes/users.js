@@ -39,13 +39,7 @@ router.post("/user/signup", (req,res) => {
             userData.password = hash;
 
             // Add user object to database
-            db.collection(userCollection)
-              .insertOne(userData)
-              .then(result => {
-                  console.log("Added user to database")
-                  res.redirect("/signin")
-              })
-              .catch(err => console.error(err))
+            
         });
     }
     else
