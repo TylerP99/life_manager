@@ -6,6 +6,9 @@ const passport = require("passport");
 // Get user schema
 const User = require("../models/User");
 
+//Bcrypt config
+const saltRounds = 10;
+
 //==============================//
 //      User Registration       //
 //==============================//
@@ -16,7 +19,7 @@ router.get("/signup", (req,res) => {
 });
 
 //Registration Request
-router.post("/user/signup", (req,res) => {
+router.post("/user/signup", async (req,res) => {
     // Get form data from request
     const userData = {
         username:req.body.username,
@@ -25,7 +28,7 @@ router.post("/user/signup", (req,res) => {
         passwordConfirmation:req.body.passwordConf,
     }
 
-    const validation_obj = validate_user_info(userData)
+    const validation_obj = await validate_user_info(userData)
     let valid = validation_obj.isValid;
 
     // If valid, create new db entry for user
@@ -34,25 +37,27 @@ router.post("/user/signup", (req,res) => {
         delete userData.passwordConfirmation;
 
         // Hash password
-        bcrypt.hash(userData.password, saltRounds, (err, hash) => {
+        bcrypt.hash(userData.password, saltRounds, async (err, hash) => {
             // Save hashed password in object
             userData.password = hash;
 
             // Add user object to database
-            
+            await User.create({name:userData.username, email:userData.email, password:userData.password});
+            res.redirect("../signin");
         });
     }
     else
     {
         // If invalid, provide some feedback for what is invalid
         console.log("Invalid")
+        console.log(validation_obj)
         res.json(validation_obj.errorData);
     }
 });
 
 // Helper functions
 
-function validate_user_info(user) {
+async function validate_user_info(user) {
     // Will return object with validation variable and other error info
 
     const validation_obj = {
@@ -88,7 +93,11 @@ function validate_user_info(user) {
         validation_obj.errorData.emailErrors.emptyField = true;
         validation_obj.isValid = false;
     }
-    else if(await User.findOne({"email":user.email}))
+    
+    const userFromDb = await User.findOne({email:user.email})
+    console.log(userFromDb);
+
+    if(userFromDb)
     {
         // Email in use
         validation_obj.errorData.emailErrors.alreadyExists = true;
@@ -109,8 +118,9 @@ function validate_user_info(user) {
         validation_obj.isValid = false;
     }
 
-    if(user.password !== user.passwordConf)
+    if(String(user.password) !== String(user.passwordConfirmation))
     {
+        console.log(`Entered ${user.password} and ${user.passwordConfirmation}`)
         // Passwords dont match
         validation_obj.errorData.passwordErrors.doesNotMatchPasswordConf = true;
         validation_obj.isValid = false;
@@ -145,4 +155,4 @@ router.get("user/logout", (req, res) => {
     req.flash('success_msg', "You have been logged out!")
 });
 
-module.exports(router);
+module.exports = router;

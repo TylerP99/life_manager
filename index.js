@@ -4,13 +4,13 @@ const passportLocal = require("passport-local");
 const session = require("express-session");
 const flash = require("connect-flash");
 const logger = require("morgan");
+const mongoose = require("mongoose");
 
-
-const MongoClient = require("mongodb").MongoClient;
+const router = express.Router();
 
 require("dotenv").config();
 
-const PORT = 3010;
+const PORT = 3100;
 
 // 
 // Middle-wares and such
@@ -198,6 +198,8 @@ app.get("/public/css/reset.css", (req,res) => {
 app.get("/dashboard", (req, res) => {
     res.render("dashboard.ejs")
 })
+
+app.use("/account", require("./routes/users.js"))
 
 app.listen(process.env.PORT || PORT, _ => {
     console.log(`Server running on port ${PORT}`)
