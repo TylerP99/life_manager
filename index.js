@@ -1,5 +1,13 @@
 const express = require("express");
+const passport = require("passport");
+const passportLocal = require("passport-local");
+const session = require("express-session");
+const flash = require("connect-flash");
+const logger = require("morgan");
+
+
 const MongoClient = require("mongodb").MongoClient;
+
 require("dotenv").config();
 
 const PORT = 3010;
@@ -13,12 +21,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
-//Bcrypt
+//            Bcrypt
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
+//============================================================================================================//
 //
-// MongoDB connection
+//                                              MongoDB config
 //
 const dbName = "LifeManager"; // Connect to DB
 const dbConnectionString = process.env.DB_STRING; // Connect to Cluster
@@ -26,13 +35,102 @@ const userCollection = "LM-users";
 const tasksCollection = "LM-tasks";
 let db;
 
+// Connect to mongo
 MongoClient.connect(dbConnectionString, {useUnifiedTopology: true})
            .then(client => {
                console.log(`Connected to ${dbName} database`);
                db = client.db(dbName);
-           })
+           });
+//
+//
+//
+//============================================================================================================//
+//============================================================================================================//
+//
+//                                           Passport Config
+//
 
-//=====================================================================================================================//
+const LocalStrategy = passportLocal.Strategy;
+
+passport.use(new LocalStrategy(
+    {usernameField:"email"},
+    async function verifyCredentials(email, password, done) {
+        const user = await db.collection(userCollection)
+                            .findOne({"email": email});
+
+        if(user)
+        {
+            // User exists
+            // Compare entered password with stored password
+            const match = await bcrypt.compare(password, user.password);
+
+            if(!match)
+            {
+                // Password Incorrect
+                done(null, false, {"message":"That password is incorrect!"});
+            }
+            else
+            {
+                // Authenticate
+                done(null, user);
+            }
+        }
+        else
+        {
+            // User does not exist
+            // Email "Incorrect"
+            done(null, false, {"message":"That email was not found!"})
+        }
+    }
+));
+
+passport.serializeUser((user,done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async (id,done) => {
+    const user = await db.collection(userCollection).findOne({id:id});
+    console.log(`Deserialize user user obj ${user}`);
+    done(null,user)
+})
+//
+//
+//============================================================================================================//
+//============================================================================================================//
+//
+// Express Session
+//
+app.use(
+    session({
+        secret: "secret",
+        resave: true,
+        saveUninitialized: true,
+    })
+);
+//
+//
+//
+//============================================================================================================//
+//============================================================================================================//
+//
+// Connect Flash
+//
+app.use(flash());
+//
+//
+//
+//============================================================================================================//
+//============================================================================================================//
+//
+// Passport middleware
+//
+app.use(passport.initialize());
+app.use(passport.session());
+//
+//
+//
+//============================================================================================================//
+//============================================================================================================//
 //
 // Tasks Page/Route
 //
@@ -194,80 +292,12 @@ app.post("/user/signup", async (req, res) => {
 //
 // SIGN IN FORM HANDLER (Read Account Info)
 //
-app.post("/user/signin", async (req, res) => {
-    // Get form info from request
-    const userInfo = {
-        email:req.body.email,
-        password:req.body.password
-    }
+app.post("/user/signin", passport.authenticate("local", {
+    successRedirect: '/dashboard',
+    failureRedirect: "/html/signin.html"
+    })
+);
 
-    const errorInfo = {
-        emailErrors:{
-            emptyField:false,
-            userDoesNotExist:false,
-        },
-        passwordErrors:{
-            emptyField:false,
-            passwordDoesNotMatch:false,
-        },
-    }
-
-    let valid = true;
-
-    // Check fields are filled
-    if(!userInfo.email)
-    {
-        // Empty email field
-        errorInfo.emailErrors.emptyField = true;
-        valid = false;
-    }
-
-    if(!userInfo.password)
-    {
-        // Empty password field
-        errorInfo.passwordErrors.emptyField = true;
-        valid = false;
-    }
-
-    // Compare hashed passwords
-    // Get user from db
-    const user = await db.collection(userCollection)
-                         .findOne( {"email": userInfo.email});
-    
-    // Check if user was found or no
-    if(user)
-    {
-        // User was found, compare password
-        const match = bcrypt.compare(userInfo.password, user.password);
-
-        if(!match)
-        {
-            // Passwords dont match
-            errorInfo.passwordErrors.passwordDoesNotMatch;
-            valid = false;
-        }
-    }
-    else
-    {
-        // User not found
-        errorInfo.emailErrors.userDoesNotExist = true;
-        valid = false;
-    }
-
-    if(valid)
-    {
-        // Login
-        // I think i need passport here?
-
-        res.redirect("/dashboard")
-    }
-    else
-    {
-        // Give feedback
-        console.log("Login errors");
-        res.json(errorInfo);
-    }
-})
 
 //
 // USER SETTINGS
