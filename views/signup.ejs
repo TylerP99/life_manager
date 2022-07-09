@@ -6,16 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/signup.css">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     
     <main>
         <h1>Sign Up</h1>
 
-        <form action="/account/user/signup" method="post" id="signup-form">
+        <form action="/account/create" method="post" id="signup-form">
 
             <section>
                 <label for="username">Name:</label>
@@ -37,7 +41,7 @@
                 <button type="submit">Register</button>
             </section>
         </form>
-        <p>Already have an account? <a href="/signin">Log in here</a></p>
+        <p>Already have an account? <a href="/user/signin">Log in here</a></p>
     </main>
      
 

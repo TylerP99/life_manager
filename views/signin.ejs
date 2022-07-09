@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/signin.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     
     <main>
         <h1>Sign In</h1>
 
-        <form action="./user/signin" method="post" id="signin-form">
+        <form action="/account/authenticate" method="post" id="signin-form">
             <section>
                 <label for="email">Email</label>
                 <input type="email" id="email field" name="email" placeholder="Email" required autocomplete="email">
@@ -27,7 +32,7 @@
             </section>
         </form>
 
-        <p>Don't have an account? <a href="/signup">Register here</a></p>
+        <p>Don't have an account? <a href="/user/signup">Register here</a></p>
     </main>
      
 </body>

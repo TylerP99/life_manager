@@ -90,7 +90,7 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser((user,done) => {
-    done(null, user._id);
+    done(null, user.id);
 });
 
 passport.deserializeUser(async (id,done) => {
@@ -204,7 +204,11 @@ app.get("/dashboard", (req, res) => {
     res.render("dashboard.ejs")
 })
 
-app.use("/account", require("./routes/users.js"))
+// Root Routes
+app.use("/", require("./routes/index.js"))
+
+// User route
+app.use("/user", require("./routes/user.js"))
 
 app.listen(process.env.PORT || PORT, _ => {
     console.log(`Server running on port ${PORT}`)
