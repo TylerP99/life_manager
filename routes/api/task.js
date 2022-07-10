@@ -4,10 +4,10 @@ const express = require("express");
 const router = express.Router();
 
 // User Schema
-const User = require("../models/User");
+const User = require("../../models/User");
 
 // Task Schema
-const Task = require("../models/Task");
+const Task = require("../../models/Task");
 
 // Create task
 router.post("/create", async (req, res) => {

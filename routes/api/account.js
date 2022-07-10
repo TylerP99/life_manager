@@ -11,7 +11,7 @@ const router = express.Router();
 
 
 // Mongoose User Schema for db save and read
-const User = require("../models/User");
+const User = require("../../models/User");
 
 //Bcrypt
 const bcrypt = require("bcrypt");

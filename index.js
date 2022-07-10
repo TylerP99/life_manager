@@ -143,14 +143,11 @@ app.use(passport.session());
 // Root Routes
 app.use("/", require("./routes/index.js"));
 
-// User route
-app.use("/user", require("./routes/user.js"));
+// User page routes
+app.use("/user", require("./routes/user.js"))
 
-// Account API Route
-app.use("/account", require("./routes/account.js"));
-
-// Task API Route
-app.use("/tasks", require("./routes/tasks.js"));
+// API Route
+app.use("/api", require("./routes/api.js"))
 
 
 
