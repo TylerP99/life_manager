@@ -12,7 +12,7 @@ body {
 #navigation-container > ul {
     display: grid;
 
-    grid-template-rows: 2fr, repeat(10, 1fr);
+    grid-template-rows: 2fr repeat(10, 1fr);
 }
 
 #navigation-container {
