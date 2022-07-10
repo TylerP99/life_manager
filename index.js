@@ -30,15 +30,10 @@ const Task = require("./models/Task");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-//============================================================================================================//
-//
-//                                              MongoDB config
-//
+
+// MongoDB + Mongoose
 const dbName = "LifeManager"; // Connect to DB
 const dbConnectionString = process.env.DB_STRING; // Connect to Cluster
-// const userCollection = "LM-users";
-// const tasksCollection = "LM-tasks";
-// let db;
 
 // Connect to life manager database
 mongoose.connect(dbConnectionString, { useNewUrlParser: true ,useUnifiedTopology: true})
@@ -47,13 +42,7 @@ mongoose.connect(dbConnectionString, { useNewUrlParser: true ,useUnifiedTopology
             console.error(err)
         });
 
-
-
-
-//============================================================================================================//
-//
 // Express Session
-//
 app.use(
     session({
         secret: "secret",
@@ -61,28 +50,17 @@ app.use(
         saveUninitialized: true,
     })
 );
-//============================================================================================================//
-//
-//                                           Passport Config
-//
 
+// Passport
 const init_passport_local = require("./config/passport-config");
 init_passport_local(passport);
-
-app.use(passport.session());
-
-//============================================================================================================//
-//
-// Connect Flash
-//
-app.use(flash());
-
-//============================================================================================================//
-//
-// Passport middleware
-//
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+// Flash
+app.use(flash());
+
 
 
 //==================================//
@@ -101,6 +79,6 @@ app.use("/api", require("./routes/api.js"))
 
 
 
-app.listen(process.env.PORT || PORT, _ => {
+app.listen(PORT, _ => {
     console.log(`Server running on port ${PORT}`);
 });
