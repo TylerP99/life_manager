@@ -19,13 +19,14 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
     const reqDesc = req.body.taskDescription || "";
     const reqStart = new Date(req.body.taskStartTime);
     const reqEnd = new Date(req.body.taskEndTime);
-    const reqColor = req.body.taskColor;
+    const reqColor = req.body.taskColor || "#000000";
     const task = {
         name:reqName,
         description:reqDesc,
         startTime:reqStart,
         endTime:reqEnd,
-        color:reqColor
+        color:reqColor,
+        userId: req.user.id
     }
 
     // Validate Info
@@ -40,6 +41,24 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
     else
     {
         //Else, tell user task failed to be created
+    }
+});
+
+// Update task
+
+// Delete task
+router.delete("/delete", ensureAuthenticated, async (req, res) => {
+    const taskId = req.body.taskId;
+
+    try
+    {
+        await Task.findByIdAndDelete(taskId);
+        res.redirect("/tasks");
+    }
+    catch (e)
+    {
+        console.error(e);
+        res.redirect("/tasks");
     }
 });
 
