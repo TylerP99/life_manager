@@ -10,27 +10,14 @@
     <link rel="stylesheet" href="css/tasks.css">
 </head>
 <body>
-    
-    <!--This is my first api display page. all pages will follow a similar structure, with a nav on the left and main area on the right. Each main will be the different code, all navs are same-->
-    <!-- <header>
-
-        <nav>
-            <ul>
-
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Tasks</a></li>
-                <li><a href="#">Achievements</a></li>
-
-            </ul>
-
-        </nav>
-
-    </header> -->
 
     <%- include("./partials/navbar.ejs") %>
 
-    <main>
+    <header>
+        <h1>Tasks</h1>
+    </header>
 
+    <main>
         <!--Need add task, and view tasks for now-->
         <div class="add-task-container">
             <div>
@@ -66,10 +53,6 @@
                 </form>
             </div>
         </div>
-
-        <section class="task-display">
-            <h1>Tasks</h1>
-        </section>
 
     </main>
 <script src="js/tasks.js"></script>
