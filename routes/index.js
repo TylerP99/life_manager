@@ -1,21 +1,22 @@
 // Generic Route Handler
 
 const express = require("express");
+const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 const router = express.Router();
 
 // Landing page
-router.get("/", (req, res) => {
+router.get("/", forwardAuthenticated, (req, res) => {
     res.render("index.ejs");
 });
 
 //Dashboard
-router.get("/dashboard", (req, res) => {
-    console.log(req.isAuthenticated());
+router.get("/dashboard", ensureAuthenticated, (req, res) => {
+    console.log(req.user);
     res.render("dashboard.ejs");
 });
 
 //Task page
-router.get("/tasks", (req, res) => {
+router.get("/tasks", ensureAuthenticated, (req, res) => {
     res.render("tasks.ejs")
 });
 

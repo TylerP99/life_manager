@@ -41,16 +41,11 @@ function init_passport_local(passport) {
     ));
 
     passport.serializeUser((user,done) => {
-        console.log("User Serialized")
-        console.log(user)
-        console.log(user.id)
         done(null, user.id);
     });
 
     passport.deserializeUser(async (id,done) => {
         const user = await User.findById(id);
-        console.log("User deserialized")
-        console.log(user)
         done(null,user);
     });
 }

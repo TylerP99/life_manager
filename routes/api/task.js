@@ -9,8 +9,11 @@ const User = require("../../models/User");
 // Task Schema
 const Task = require("../../models/Task");
 
+// Auth middleware
+const { ensureAuthenticated } = require("../../config/auth");
+
 // Create task
-router.post("/create", async (req, res) => {
+router.post("/create", ensureAuthenticated, async (req, res) => {
     // Get task info from request
     const reqName = req.body.taskName || "New Task";
     const reqDesc = req.body.taskDescription || "";

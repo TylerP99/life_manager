@@ -20,12 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
-// User Schema
-const User = require("./models/User");
-
-// Task Schema
-const Task = require("./models/Task");
-
 // Bcrypt
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -35,12 +29,15 @@ const saltRounds = 10;
 const dbName = "LifeManager"; // Connect to DB
 const dbConnectionString = process.env.DB_STRING; // Connect to Cluster
 
-// Connect to life manager database
 mongoose.connect(dbConnectionString, { useNewUrlParser: true ,useUnifiedTopology: true})
         .then(() => console.log(`Connected to ${dbName} database`))
         .catch(err => {
             console.error(err)
         });
+
+const User = require("./models/User");
+
+const Task = require("./models/Task");
 
 // Express Session
 app.use(

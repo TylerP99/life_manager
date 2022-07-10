@@ -9,12 +9,15 @@ const User = require("../models/User");
 //Bcrypt config
 const saltRounds = 10;
 
+// Authentication middleware
+const {ensureAuthenticated, forwardAuthenticated} = require("../config/auth");
+
 //==============================//
 //      User Registration       //
 //==============================//
 
 //Registration Page
-router.get("/signup", (req,res) => {
+router.get("/signup", forwardAuthenticated, (req,res) => {
     res.render("signup.ejs");
 });
 
@@ -23,7 +26,7 @@ router.get("/signup", (req,res) => {
 //==============================//
 
 // Sign in page
-router.get("/signin", (req, res) => {
+router.get("/signin", forwardAuthenticated, (req, res) => {
     res.render("signin");
 });
 
