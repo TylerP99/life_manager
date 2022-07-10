@@ -10,7 +10,7 @@ const router = express.Router();
 
 require("dotenv").config();
 
-const PORT = 3100;
+const PORT = process.env.PORT || 3100;
 
 
 // Middle-wares and such
@@ -25,6 +25,10 @@ const User = require("./models/User");
 
 // Task Schema
 const Task = require("./models/Task");
+
+// Bcrypt
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 //============================================================================================================//
 //
@@ -43,53 +47,8 @@ mongoose.connect(dbConnectionString, { useNewUrlParser: true ,useUnifiedTopology
             console.error(err)
         });
 
-//============================================================================================================//
-//
-//                                           Passport Config
-//
 
-const LocalStrategy = passportLocal.Strategy;
 
-passport.use(new LocalStrategy(
-    {usernameField:"email"},
-    async function verifyCredentials(email, password, done) {
-        const user = await User.findOne({"email": email});
-
-        if(user)
-        {
-            // User exists
-            // Compare entered password with stored password
-            const match = await bcrypt.compare(password, user.password);
-
-            if(!match)
-            {
-                // Password Incorrect
-                done(null, false, {"message":"That password is incorrect!"});
-            }
-            else
-            {
-                // Authenticate
-                done(null, user);
-            }
-        }
-        else
-        {
-            // User does not exist
-            // Email "Incorrect"
-            done(null, false, {"message":"That email was not found!"})
-        }
-    }
-));
-
-passport.serializeUser((user,done) => {
-    done(null, user.id);
-});
-
-passport.deserializeUser(async (id,done) => {
-    const user = await User.findById(id);
-    console.log(`Deserialize user user obj ${user}`);
-    done(null,user);
-});
 
 //============================================================================================================//
 //
@@ -102,6 +61,15 @@ app.use(
         saveUninitialized: true,
     })
 );
+//============================================================================================================//
+//
+//                                           Passport Config
+//
+
+const init_passport_local = require("./config/passport-config");
+init_passport_local(passport);
+
+app.use(passport.session());
 
 //============================================================================================================//
 //

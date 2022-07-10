@@ -32,8 +32,9 @@ router.get("/signin", (req, res) => {
 //==============================//
 
 router.get("user/logout", (req, res) => {
+    console.log("Logging out");
     req.logout();
-    req.flash('success_msg', "You have been logged out!")
+    req.flash('success_msg', "You have been logged out!");
 });
 
 module.exports = router;

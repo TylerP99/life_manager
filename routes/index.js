@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
 
 //Dashboard
 router.get("/dashboard", (req, res) => {
+    console.log(req.isAuthenticated());
     res.render("dashboard.ejs");
 });
 
