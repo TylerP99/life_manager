@@ -150,7 +150,7 @@ app.use("/user", require("./routes/user.js"));
 app.use("/account", require("./routes/account.js"));
 
 // Task API Route
-app.use("/task", require("./routes/tasks.js"));
+app.use("/tasks", require("./routes/tasks.js"));
 
 
 

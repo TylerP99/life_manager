@@ -10,7 +10,7 @@ const User = require("../models/User");
 const Task = require("../models/Task");
 
 // Create task
-router.post("/create/task", async (req, res) => {
+router.post("/create", async (req, res) => {
     // Get task info from request
     const reqName = req.body.taskName || "New Task";
     const reqDesc = req.body.taskDescription || "";

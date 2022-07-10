@@ -28,6 +28,9 @@ const TaskSchema = new mongoose.Schema({
     creationTime: {
         type: Date,
         default: Date.now
+    },
+    userId: {
+        type: mongoose.Types.ObjectId,
     }
 });
 
