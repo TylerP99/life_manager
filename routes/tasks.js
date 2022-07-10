@@ -3,47 +3,46 @@
 const express = require("express");
 const router = express.Router();
 
+// User Schema
+const User = require("../models/User");
 
-//============================================================================================================//
-//
-// Tasks Page/Route
-//
-// Read tasks
-router.get("/tasks", (req, res) => {
-    //Get task data from db
-    db.collection("task-list").find().toArray()
-      .then(data => {
-          res.render("tasks.ejs", {info : data});
-      })
-      .catch(err => {
-          console.error(err);
-      })
-});
-//
-//
-// NOTE: NEED TO CONNECT TASK TO PROPER DB, REDO TASK OBJECT TO USE USER UID
-//
-//
-// Create tasks
-router.post("/create/task", (req, res) => {
-    //Info should be valid if user sent it, validate on client side please
-    const reqName = req.body.taskName;
-    const reqDesc = req.body.taskDescription;
+// Task Schema
+const Task = require("../models/Task");
+
+// Create task
+router.post("/create/task", async (req, res) => {
+    // Get task info from request
+    const reqName = req.body.taskName || "New Task";
+    const reqDesc = req.body.taskDescription || "";
     const reqStart = new Date(req.body.taskStartTime);
     const reqEnd = new Date(req.body.taskEndTime);
     const reqColor = req.body.taskColor;
-    const task = new Task(reqName, reqDesc, reqStart, reqEnd, reqColor);
+    const task = {
+        name:reqName,
+        description:reqDesc,
+        startTime:reqStart,
+        endTime:reqEnd,
+        color:reqColor
+    }
 
-    //Add to db (user func comes next)
-    db.collection(tasksCollection)     //Get collection
-      .insertOne(task)  //Insert task object
-      .then( result => {
-          console.log("Added task");
-          res.redirect("/tasks");
-      })
-      .catch(err=> {
-          console.error(err);
-      })
+    // Validate Info
+    const valid = validate_new_task(task);
+
+    if(valid)
+    {
+        //If valid, save task to db
+        await Task.create(task);
+        res.redirect("/tasks")
+    }
+    else
+    {
+        //Else, tell user task failed to be created
+    }
 });
+
+function validate_new_task(task)
+{
+    return true;
+}
 
 module.exports = router;

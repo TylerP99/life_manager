@@ -8,19 +8,13 @@
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/tasks.css">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     
     <!--This is my first api display page. all pages will follow a similar structure, with a nav on the left and main area on the right. Each main will be the different code, all navs are same-->
-    <header>
+    <!-- <header>
 
         <nav>
-            <!--User Account and settings coming soon, basically after I get something functioning to test-->
             <ul>
 
                 <li><a href="#">Home</a></li>
@@ -31,7 +25,9 @@
 
         </nav>
 
-    </header>
+    </header> -->
+
+    <%- include("./partials/navbar.ejs") %>
 
     <main>
 
@@ -73,27 +69,6 @@
 
         <section class="task-display">
             <h1>Tasks</h1>
-            <% for(let i = 0; i < info.length; ++i) { %>
-                <section>
-                    <ul>
-                        <li>
-                            <span><%= info[i].name %></span>
-                        </li>
-                        <li>
-                            <span><%= info[i].description %></span>
-                        </li>
-                        <li>
-                            <span>Starts: <%= info[i].startTime %></span>
-                        </li>
-                        <li>
-                            <span>Ends :<%= info[i].endTime %></span>
-                        </li>
-                    </ul>
-                    <div>
-                        <button>Delete</button>
-                    </div>
-                </section>
-            <% } %>    
         </section>
 
     </main>

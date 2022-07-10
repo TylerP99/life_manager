@@ -136,6 +136,10 @@ app.use(passport.session());
 //
 //============================================================================================================//
 
+//==================================//
+//             Routes               //
+//==================================//
+
 // Root Routes
 app.use("/", require("./routes/index.js"));
 
@@ -147,6 +151,9 @@ app.use("/account", require("./routes/account.js"));
 
 // Task API Route
 app.use("/task", require("./routes/tasks.js"));
+
+
+
 
 app.listen(process.env.PORT || PORT, _ => {
     console.log(`Server running on port ${PORT}`);

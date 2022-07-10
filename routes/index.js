@@ -13,4 +13,9 @@ router.get("/dashboard", (req, res) => {
     res.render("dashboard.ejs");
 });
 
+//Task page
+router.get("/tasks", (req, res) => {
+    res.render("tasks.ejs")
+});
+
 module.exports = router;
