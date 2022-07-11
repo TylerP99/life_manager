@@ -76,7 +76,7 @@
 
                 <% for(let i = 0; i < tasks.length; ++i)  { %> 
 
-                    <section class="task">
+                    <section id="<%=tasks[i]._id%>" class="task">
 
                         <h2><%=tasks[i].name%></h2>
 
@@ -99,31 +99,31 @@
                                     <h2>Edit Task</h2>
                                     <section>
                                         <label for="task-name">Name:</label>
-                                        <input name="taskName" id="task-name" type="text" maxlength="50" required="true" placeholder="Enter name here">
+                                        <input name="taskName" id="task-edit-name" type="text" maxlength="50" placeholder="Enter name here" value="<%=tasks[i].name%>">
                                     </section>
 
                                     <section>
                                         <label for="task-description">Description:</label>
-                                        <input name="taskDescription" id="task-description" type="text" maxlength="100" required="false" placeholder="Optional">
+                                        <input name="taskDescription" id="task-edit-description" type="text" maxlength="100" placeholder="Optional" value="<%=tasks[i].description%>">
                                     </section>
 
                                     <section>
                                         <label for="task-start-time">Start Time:</label>
-                                        <input name="taskStartTime" id="task-start-time" type="datetime-local" required="true">
+                                        <input name="taskStartTime" id="task-edit-start-time" type="datetime-local" value="<%=tasks[i].startTime%>">
                                     </section>
                                     
                                     <section>
                                         <label for="task-end-time">End Time:</label>
-                                        <input name="taskEndTime" id="task-end-time" type="datetime-local" required="false">
+                                        <input name="taskEndTime" id="task-edit-end-time" type="datetime-local" value="<%=tasks[i].endTime%>">
                                     </section>
 
                                     <section>
                                         <label for="task-color">Color:</label>
-                                        <input name="taskColor" id="task-color" type="color" required="false">
+                                        <input name="taskColor" id="task-edit-color" type="color" value="<%=tasks[i].color%>">
                                     </section>
 
                                     <section>
-                                        <button id="task-edit-submit-button" type="submit">Create Task</button>
+                                        <button id="task-edit-submit-button" type="button">Edit Task</button>
                                         <button type="reset">Clear Fields</button>
                                     </section>
 

@@ -20,6 +20,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+
+// Morgan
+app.use(logger("dev"));
+
 // Bcrypt
 const bcrypt = require("bcrypt");
 const saltRounds = 10;

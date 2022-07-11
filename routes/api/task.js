@@ -36,7 +36,7 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
     {
         //If valid, save task to db
         await Task.create(task);
-        res.redirect("/tasks")
+        res.redirect("/tasks");
     }
     else
     {
@@ -45,20 +45,38 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
 });
 
 // Update task
+router.put("/update", ensureAuthenticated, async (req, res) => {
+    const taskId = req.body.taskId;
+
+    console.log(`Put request on task number ${taskId}`);
+
+    const updateTask = await Task.findByIdAndUpdate(
+                                // The id
+                                taskId,
+                                // The changes
+                                req.body.newTask,
+                                // Return updated?
+                                {new: true}
+                            );
+    console.log(updateTask);
+
+    res.json("Updated");
+});
 
 // Delete task
 router.delete("/delete", ensureAuthenticated, async (req, res) => {
     const taskId = req.body.taskId;
-
+    console.log("ATTEMPTING")
     try
     {
-        await Task.findByIdAndDelete(taskId);
-        res.redirect("/tasks");
+        const delet = await Task.findByIdAndDelete(taskId);
+        console.log(delet);
+        res.json("Deleted successfully")
     }
     catch (e)
     {
         console.error(e);
-        res.redirect("/tasks");
+        res.json("Not deleted")
     }
 });
 
