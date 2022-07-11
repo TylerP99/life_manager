@@ -11,48 +11,138 @@
 </head>
 <body>
 
+    <!-- Navigation element -->
     <%- include("./partials/navbar.ejs") %>
 
+    <!-- Title & info section for current app -->
     <header>
         <h1>Tasks</h1>
     </header>
 
     <main>
-        <!--Need add task, and view tasks for now-->
+        <!-- Menu bar for sorting, filtering -->
+        <section id="options">
+            <select id="sort">
+                <option value="sd-as">Start Date: Ascending</option>
+                <option value="sd-de">Start Date: Descending</option>
+                <option value="ed-as">End Date: Ascending</option>
+                <option value="ed-de">End Date: Descending</option>
+                <option value="n-as">Name: Ascending</option>
+                <option value="n-de">Name: Descending</option>
+            </select>
+        </section>
+        <!-- Add task functionality -->
         <div class="add-task-container">
             <div>
                 <button name="add-task" id="add-task" type="menu">+</button>
-            </div>
-            <div id="add-task-menu" class="hidden">
-                <form action="/api/task/create" method="post">
-                    <h2>Create New Task</h2>
-                    <section>
-                        <label for="task-name">Name:</label>
-                        <input name="taskName" id="task-name" type="text" maxlength="50" required="true" placeholder="Enter name here">
-                    </section>
-                    <section>
-                        <label for="task-description">Description:</label>
-                        <input name="taskDescription" id="task-description" type="text" maxlength="100" required="false" placeholder="Optional">
-                    </section>
-                    <section>
-                        <label for="task-start-time">Start Time:</label>
-                        <input name="taskStartTime" id="task-start-time" type="datetime-local" required="true">
-                    </section>
-                    <section>
-                        <label for="task-end-time">End Time:</label>
-                        <input name="taskEndTime" id="task-end-time" type="datetime-local" required="false">
-                    </section>
-                    <section>
-                        <label for="task-color">Color:</label>
-                        <input name="taskColor" id="task-color" type="color" required="false">
-                    </section>
-                    <section>
-                        <button type="submit">Create Task</button>
-                        <button type="reset">Clear Fields</button>
-                    </section>
-                </form>
+                <div id="add-task-menu" class="hidden">
+                    <form action="/api/task/create" method="post">
+                        <h2>Create New Task</h2>
+                        <section>
+                            <label for="task-name">Name:</label>
+                            <input name="taskName" id="task-name" type="text" maxlength="50" required="true" placeholder="Enter name here">
+                        </section>
+                        <section>
+                            <label for="task-description">Description:</label>
+                            <input name="taskDescription" id="task-description" type="text" maxlength="100" required="false" placeholder="Optional">
+                        </section>
+                        <section>
+                            <label for="task-start-time">Start Time:</label>
+                            <input name="taskStartTime" id="task-start-time" type="datetime-local" required="true">
+                        </section>
+                        <section>
+                            <label for="task-end-time">End Time:</label>
+                            <input name="taskEndTime" id="task-end-time" type="datetime-local" required="false">
+                        </section>
+                        <section>
+                            <label for="task-color">Color:</label>
+                            <input name="taskColor" id="task-color" type="color" required="false">
+                        </section>
+                        <section>
+                            <button type="submit">Create Task</button>
+                            <button type="reset">Clear Fields</button>
+                        </section>
+                    </form>
+                </div>
             </div>
         </div>
+
+        <!-- Area that displays a user's tasks, or a message that they don't have any -->
+        <section id="task-display">
+
+            <% if(!tasks) { %> 
+                <h2>No tasks</h2>
+            <% } else { %>
+
+                <% for(let i = 0; i < tasks.length; ++i)  { %> 
+
+                    <section class="task">
+
+                        <h2><%=tasks[i].name%></h2>
+
+                        <p><%=tasks[i].description%></p>
+
+                        <p><%=tasks[i].startTime%></p>
+
+                        <p><%=tasks[i].endTime%></p>
+
+                        <button id="task-settings-button">Settings</button>
+
+                        <section id="task-settings">
+
+                            <button id="task-edit-start-button">Edit this Task</button>
+
+                            <section id="task-edit-form-container" class="hidden">
+
+                                <form id="task-edit-form">
+
+                                    <h2>Edit Task</h2>
+                                    <section>
+                                        <label for="task-name">Name:</label>
+                                        <input name="taskName" id="task-name" type="text" maxlength="50" required="true" placeholder="Enter name here">
+                                    </section>
+
+                                    <section>
+                                        <label for="task-description">Description:</label>
+                                        <input name="taskDescription" id="task-description" type="text" maxlength="100" required="false" placeholder="Optional">
+                                    </section>
+
+                                    <section>
+                                        <label for="task-start-time">Start Time:</label>
+                                        <input name="taskStartTime" id="task-start-time" type="datetime-local" required="true">
+                                    </section>
+                                    
+                                    <section>
+                                        <label for="task-end-time">End Time:</label>
+                                        <input name="taskEndTime" id="task-end-time" type="datetime-local" required="false">
+                                    </section>
+
+                                    <section>
+                                        <label for="task-color">Color:</label>
+                                        <input name="taskColor" id="task-color" type="color" required="false">
+                                    </section>
+
+                                    <section>
+                                        <button id="task-edit-submit-button" type="submit">Create Task</button>
+                                        <button type="reset">Clear Fields</button>
+                                    </section>
+
+                                </form>
+
+                            </section>
+
+                            
+                                <button id="task-delete-button">Delete this Task</button>
+
+                        </section>
+
+                    </section>
+
+                <% } %>
+
+            <% } %> 
+
+        </section>
 
     </main>
 <script src="js/tasks.js"></script>
