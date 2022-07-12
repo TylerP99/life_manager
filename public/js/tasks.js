@@ -54,10 +54,11 @@ async function send_edit_task_request(event) {
 }
 
 // Delete Request for delete task
-document.querySelector("#task-delete-button").addEventListener("click", send_delete_task_request);
+document.querySelectorAll("#task-delete-button").forEach( x => x.addEventListener("click", send_delete_task_request));
 
 async function send_delete_task_request(event)
 {
+    console.log("deleted")
     // Get task id from dom
     const taskId = event.target.parentElement.parentElement.id;
 
@@ -70,3 +71,5 @@ async function send_delete_task_request(event)
     console.log(data);
     location.reload();
 }
+
+console.log("Linked")

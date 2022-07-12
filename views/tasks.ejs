@@ -19,22 +19,10 @@
         <h1>Tasks</h1>
     </header>
 
-    <main>
-        <!-- Menu bar for sorting, filtering -->
-        <section id="options">
-            <select id="sort">
-                <option value="sd-as">Start Date: Ascending</option>
-                <option value="sd-de">Start Date: Descending</option>
-                <option value="ed-as">End Date: Ascending</option>
-                <option value="ed-de">End Date: Descending</option>
-                <option value="n-as">Name: Ascending</option>
-                <option value="n-de">Name: Descending</option>
-            </select>
-        </section>
-        <!-- Add task functionality -->
+    <section id="options">
+        <!-- Content for the add task menu -->
         <div class="add-task-container">
-            <div>
-                <button name="add-task" id="add-task" type="menu">+</button>
+                <button name="add-task" id="add-task" type="menu">Create New Task</button>
                 <div id="add-task-menu" class="hidden">
                     <form action="/api/task/create" method="post">
                         <h2>Create New Task</h2>
@@ -58,14 +46,30 @@
                             <label for="task-color">Color:</label>
                             <input name="taskColor" id="task-color" type="color" required="false">
                         </section>
-                        <section>
+                        <section class="form-button-container">
                             <button type="submit">Create Task</button>
                             <button type="reset">Clear Fields</button>
                         </section>
                     </form>
                 </div>
-            </div>
         </div>
+        <!-- DONE -->
+
+        <!-- Menu bar for sorting, filtering -->
+        <section id="options">
+            <select id="sort">
+                <option value="sd-as">Start Date: Ascending</option>
+                <option value="sd-de">Start Date: Descending</option>
+                <option value="ed-as">End Date: Ascending</option>
+                <option value="ed-de">End Date: Descending</option>
+                <option value="n-as">Name: Ascending</option>
+                <option value="n-de">Name: Descending</option>
+            </select>
+        </section>
+        <!-- DONE -->
+    </section>
+
+    <main>
 
         <!-- Area that displays a user's tasks, or a message that they don't have any -->
         <section id="task-display">

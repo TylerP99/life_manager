@@ -29,6 +29,8 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
         userId: req.user.id
     }
 
+    console.log(typeof req.body.taskStartTime);
+
     // Validate Info
     const valid = validate_new_task(task);
 
