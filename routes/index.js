@@ -24,7 +24,7 @@ router.get("/tasks", ensureAuthenticated, async (req, res) => {
 
     console.log(tasks);
     // Render the page
-    res.render("tasks.ejs", {tasks: tasks});
+    res.render("tasks.ejs", {tasks: tasks, user: req.user});
 });
 
 module.exports = router;
