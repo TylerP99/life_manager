@@ -53,7 +53,7 @@ router.get("/tasks", ensureAuthenticated, async (req, res) => {
     res.render("tasks.ejs", {tasks: updatedTasks, user: req.user});
 });
 
-router.get("/storagesystem", (req, res) => {
+router.get("/storagemanagement", (req, res) => {
     res.render("storage.ejs");
 });
 
