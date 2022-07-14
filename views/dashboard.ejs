@@ -6,44 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/tasks.css">
 </head>
 <body>
-    
-    <section>
 
-        <nav>
+    <!-- Navigation element -->
+    <%- include("./partials/navbar.ejs") %>
 
-            <ul>
+    <!-- Title & info section for current app -->
+    <header>
+        <h1>Dashboard</h1>
+    </header>
 
-                <li>
-                    <a href="/tasks">
-                        Tasks
-                    </a>
-                </li>
-                <li>
-                    <a href="/calendar">
-                        Calendar
-                    </a>
-                </li>
-                <li>
-                    <a href="/achievements">
-                        Achievements
-                    </a>
-                </li>
+    <section id="options">
 
-            </ul>   
+        <!-- DONE -->
 
-        </nav>
-
+        <!-- Menu bar for sorting, filtering -->
+        <section>
+            <select id="sort">
+                <option value="sd-as">Start Date: Ascending</option>
+                <option value="sd-de">Start Date: Descending</option>
+                <option value="ed-as">End Date: Ascending</option>
+                <option value="ed-de">End Date: Descending</option>
+                <option value="n-as">Name: Ascending</option>
+                <option value="n-de">Name: Descending</option>
+            </select>
+        </section>
+        <!-- DONE -->
     </section>
 
     <main>
 
-    </main>
+        <!--Idea: Main shows the highest existing system by default (ie, shows units, if no units then containers, if no containers then items, easy with ejs templates)-->
 
+    </main>
+</body>
+</html>
+    
 </body>
 </html>
