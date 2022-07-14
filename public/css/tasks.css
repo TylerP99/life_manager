@@ -52,20 +52,36 @@ main {
     justify-content: space-between;
 }
 
-#dashboard-link-container {
-    border-left-color: #FFB7B2;
+#one {
+    border-color: #FF9AA2 transparent transparent transparent;
 }
 
-#tasks-link-container {
-    border-left-color: #B5EAD7;
+#two {
+    border-color: #FFB7B2 transparent transparent transparent;
 }
 
-#achievements-link-container {
-    border-left-color: #C7CEEA;
+#three {
+    border-color: #FFDAC1 transparent transparent transparent;
 }
 
-#filler {
-    border-left-color: #E2F0CB;
+#four {
+    border-color: #E2F0CB transparent transparent transparent;
+}
+
+#five {
+    border-color: #B5EAD7 transparent transparent transparent;
+}
+
+#six {
+    border-color: #CCF1FF transparent transparent transparent;
+}
+
+#seven {
+    border-color: #C7CEEA transparent transparent transparent;
+}
+
+#eight {
+    border-color: #E0D7FF transparent transparent transparent;
 }
 
 .hidden {
