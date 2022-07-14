@@ -105,6 +105,7 @@ form > section {
     flex-wrap: wrap;
 
     padding: 1rem 2rem;
+    width: 100%;
 }
 
 .task {

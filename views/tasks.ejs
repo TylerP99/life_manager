@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/task-card.css">
     <link rel="stylesheet" href="css/tasks.css">
 
 </head>
@@ -34,7 +35,7 @@
                         </section>
                         <section>
                             <label for="task-description">Description:</label>
-                            <input name="taskDescription" id="task-description" type="text" maxlength="100" required="false" placeholder="Optional">
+                            <input name="taskDescription" id="task-description" type="text" maxlength="100" placeholder="Optional">
                         </section>
                         <section>
                             <label for="task-start-time">Start Time:</label>
@@ -80,71 +81,7 @@
                 <h2>No tasks</h2>
             <% } else { %>
 
-                <% for(let i = 0; i < tasks.length; ++i)  { %> 
-
-                    <section id="<%=tasks[i]._id%>" class="task">
-
-                        <h2><%=tasks[i].name%></h2>
-
-                        <p><%=tasks[i].description%></p>
-
-                        <p><%=tasks[i].startTime%></p>
-
-                        <p><%=tasks[i].endTime%></p>
-
-                        <button id="task-settings-button">Settings</button>
-
-                        <section id="task-settings">
-
-                            <button id="task-edit-start-button">Edit this Task</button>
-
-                            <section id="task-edit-form-container" class="hidden">
-
-                                <form id="task-edit-form">
-
-                                    <h2>Edit Task</h2>
-                                    <section>
-                                        <label for="task-name">Name:</label>
-                                        <input name="taskName" id="task-edit-name" type="text" maxlength="50" placeholder="Enter name here" value="<%=tasks[i].name%>">
-                                    </section>
-
-                                    <section>
-                                        <label for="task-description">Description:</label>
-                                        <input name="taskDescription" id="task-edit-description" type="text" maxlength="100" placeholder="Optional" value="<%=tasks[i].description%>">
-                                    </section>
-
-                                    <section>
-                                        <label for="task-start-time">Start Time:</label>
-                                        <input name="taskStartTime" id="task-edit-start-time" type="datetime-local" value="<%=tasks[i].startTime%>">
-                                    </section>
-                                    
-                                    <section>
-                                        <label for="task-end-time">End Time:</label>
-                                        <input name="taskEndTime" id="task-edit-end-time" type="datetime-local" value="<%=tasks[i].endTime%>">
-                                    </section>
-
-                                    <section>
-                                        <label for="task-color">Color:</label>
-                                        <input name="taskColor" id="task-edit-color" type="color" value="<%=tasks[i].color%>">
-                                    </section>
-
-                                    <section>
-                                        <button id="task-edit-submit-button" type="button">Edit Task</button>
-                                        <button type="reset">Clear Fields</button>
-                                    </section>
-
-                                </form>
-
-                            </section>
-
-                            
-                                <button id="task-delete-button">Delete this Task</button>
-
-                        </section>
-
-                    </section>
-
-                <% } %>
+                <%- include("./partials/task-card.ejs") %>
 
             <% } %> 
 

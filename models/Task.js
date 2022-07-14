@@ -21,6 +21,11 @@ const TaskSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
+    completed: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     color: {
         type: String,
         default: "#000"
