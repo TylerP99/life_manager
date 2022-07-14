@@ -16,7 +16,7 @@ router.get("/", forwardAuthenticated, (req, res) => {
 //Dashboard
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
     console.log(req.user);
-    res.render("dashboard.ejs");
+    res.render("dashboard.ejs", {user: req.user});
 });
 
 //Task page
