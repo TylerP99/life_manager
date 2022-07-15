@@ -16,6 +16,7 @@
         <section class="task-time">
 
             <section class="task-start">
+                <span><%=task[i].startDate%></span>
                 <span><%= tasks[i].startTime %></span>
             </section>
 
@@ -25,40 +26,41 @@
             </section>
 
             <section class="task-end">
+                <span><%=tasks[i].endDate%></span>
                 <span><%=tasks[i].endTime %></span>
             </section>
 
-            <section class="task-complete">
-                <button type="button">Mark as Complete</button>
-            </section>
+        </section>
 
-            <section class="task-settings">
-                <img src="assets/settings-svgrepo-com.svg" alt="Settings button">
+        <section class="task-complete">
+            <button type="button">Mark as Complete</button>
+        </section>
 
-                <section>
+        <section class="task-settings">
+            <img src="assets/settings-svgrepo-com.svg" alt="Settings button">
 
-                    <section class="task-settings-container">
+            <section class="hidden">
 
-                        <section class="task-settings-options">
-                            <button>Edit Task</button>
-                            <button>Delete Task</button>
-                        </section>
+                <section class="task-settings-container">
 
-                        <section class="task-edit">
+                    <section class="task-settings-options">
+                        <button>Edit Task</button>
+                        <button>Delete Task</button>
+                    </section>
+
+                    <section class="task-edit">
+                        
+                        <form>
+
                             
-                            <form>
 
-                                
-
-                            </form>
-
-                        </section>
+                        </form>
 
                     </section>
 
                 </section>
-            </section>
 
+            </section>
         </section>
 
     </section>
