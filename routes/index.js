@@ -30,17 +30,17 @@ router.get("/tasks", ensureAuthenticated, async (req, res) => {
     const updatedTasks = tasks.map( x => {
         console.log("Editting task");
         let newStart = new Date_Formatter(x.startTime);
-        newStart = newStart.get_date_and_time();
 
         let newEnd = new Date_Formatter(x.endTime);
-        newEnd = newEnd.get_date_and_time();
 
         return {
             _id: x._id,
             name: x.name,
             description: x.description,
-            startTime: newStart,
-            endTime: newEnd,
+            startDate: newStart.date,
+            startTime: newStart.time,
+            endDate: newEnd.date,
+            endTime: newEnd.time,
             color: x.color,
             userId: x.userId
         };
