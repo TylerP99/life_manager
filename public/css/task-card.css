@@ -19,6 +19,7 @@
 
 .task-header {
     display: flex;
+    align-items: center;
     grid-area: 1 / 1 / 2 / 2;
 }
 
@@ -26,6 +27,7 @@
     background: red;
     height: 3rem;
     width: 1rem;
+    margin-right: 0.5rem;
 }
 
 .task-header h1 {
@@ -49,6 +51,8 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
+    font-size: 1.2rem;
 }
 
 .task-start, .task-end{
