@@ -29,7 +29,7 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
         userId: req.user.id
     }
 
-    console.log(typeof req.body.taskStartTime);
+    console.log(reqStart)
 
     // Validate Info
     const valid = validate_new_task(task);
@@ -50,8 +50,6 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
 router.put("/update", ensureAuthenticated, async (req, res) => {
     const taskId = req.body.taskId;
 
-    console.log(`Put request on task number ${taskId}`);
-
     const updateTask = await Task.findByIdAndUpdate(
                                 // The id
                                 taskId,
@@ -60,7 +58,6 @@ router.put("/update", ensureAuthenticated, async (req, res) => {
                                 // Return updated?
                                 {new: true}
                             );
-    console.log(updateTask);
 
     res.json("Updated");
 });
@@ -68,11 +65,9 @@ router.put("/update", ensureAuthenticated, async (req, res) => {
 // Delete task
 router.delete("/delete", ensureAuthenticated, async (req, res) => {
     const taskId = req.body.taskId;
-    console.log("ATTEMPTING")
     try
     {
         const delet = await Task.findByIdAndDelete(taskId);
-        console.log(delet);
         res.json("Deleted successfully")
     }
     catch (e)

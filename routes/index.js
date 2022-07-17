@@ -23,12 +23,8 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
 router.get("/tasks", ensureAuthenticated, async (req, res) => {
     // Get user tasks from db
     const tasks = await Task.find({userId:req.user.id});
-
-    console.log(tasks);
-
     // Convert date values to something more readable
     const updatedTasks = tasks.map( x => {
-        console.log("Editting task");
         let newStart = new Date_Formatter(x.startTime);
 
         let newEnd = new Date_Formatter(x.endTime);
@@ -45,8 +41,7 @@ router.get("/tasks", ensureAuthenticated, async (req, res) => {
             userId: x.userId
         };
     });
-
-    console.log(updatedTasks)       
+     
 
 
     // Render the page
