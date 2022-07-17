@@ -1,6 +1,9 @@
-<nav id="navigation-container">
-    <section id="user-settings-link-container">
-        <h1>Welcome, <%= user.name %></h1>
+<nav class="navigation-container">
+    <section class="user-card">
+        <section class="user-welcome">
+            <h2>Welcome,</h2>
+            <h1><%= user.name %></h1>
+        </section>
         <section class="user-options">
 
             <a href="/account/settings">View Account</a>
@@ -37,6 +40,6 @@
     </ul>
 
     <footer>
-        <span>Made by Tyler Perata</span>
+        <span>Legal</span>
     </footer>
 </nav>
