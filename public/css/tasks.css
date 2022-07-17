@@ -4,6 +4,8 @@
 
 html {
     font-family: "Roboto", sans-serif;
+
+    height: 100%;
 }
 
 body {
@@ -11,6 +13,10 @@ body {
 
     grid-template-rows: 1fr 0.5fr 9fr;
     grid-template-columns: 1fr 6fr;
+
+    overflow: hidden;
+
+    height: 100%;
 }
 
 header {
@@ -21,6 +27,9 @@ header {
 main {
     border: 1px solid;
     grid-area: 3 / 2 / 4 / 3;
+
+    height: 100%;
+    overflow: scroll;
 }
 
 #one {
@@ -109,7 +118,10 @@ form > section {
     flex-wrap: wrap;
 
     padding: 1rem 2rem;
+    height: 100%;
     width: 100%;
+
+    overflow: inherit;
 }
 
 .task {

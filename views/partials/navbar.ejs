@@ -1,6 +1,13 @@
 <nav id="navigation-container">
     <section id="user-settings-link-container">
-        <a href="/account/view"><%=user.name%></a>
+        <h1>Welcome, <%= user.name %></h1>
+        <section class="user-options">
+
+            <a href="/account/settings">View Account</a>
+
+            <a href="/api/account/signout">Sign Out</a>
+
+        </section>
     </section>
     <ul class="navigation-list">
         <li class="nav-link-container" id="dashboard-link-container">
