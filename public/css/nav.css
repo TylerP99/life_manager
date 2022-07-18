@@ -63,6 +63,15 @@ Each rule will be divided into a layout section on top, and a style section on t
     text-decoration: underline;
 }
 
+.navigation-container footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #898AA6;
+    color: #fff;
+}
+
 #dashboard-link-container {
     border-color: #FF9AA2;
 }
