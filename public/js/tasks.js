@@ -9,10 +9,10 @@ function openTaskCreation(event) {
 }
 
 // Opens and closes the Edit Task menu
-document.querySelector("#task-edit-start-button").addEventListener("click", openTaskRevision);
+document.querySelector(".task-settings-button").addEventListener("click", openTaskRevision);
 
 function openTaskRevision(event) {
-    const taskRevisionMenu = document.querySelector("#task-edit-form-container");
+    const taskRevisionMenu = document.querySelector(".task-settings-container");
 
     toggle_hidden(taskRevisionMenu);
 }

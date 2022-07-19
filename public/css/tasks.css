@@ -21,8 +21,10 @@ body {
 }
 
 header {
-    border: 1px solid;
-    grid-area: 1 / 2 / 2 / 3
+    grid-area: 1 / 2 / 2 / 3;
+
+    font-size: 8rem;
+    margin-left: 1rem;
 }
 
 main {
@@ -54,6 +56,8 @@ main {
     position: absolute;
     top: 50px;
     left: 0;
+
+    z-index: 2;
 }
 
 form > section {

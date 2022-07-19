@@ -37,11 +37,9 @@
         </section>
 
         <section class="task-settings">
-            <img src="assets/settings-svgrepo-com.svg" alt="Settings button">
+            <img class="task-settings-button" src="assets/settings-svgrepo-com.svg" alt="Settings button">
 
-            <section class="hidden">
-
-                <section class="task-settings-container">
+                <section class="task-settings-container hidden">
 
                     <section class="task-settings-options">
                         <button>Edit Task</button>
@@ -50,9 +48,49 @@
 
                     <section class="task-edit">
                         
-                        <form>
+                        <form class="task-edit-form">
 
-                            
+                            <section class="task-edit-name-container">
+
+                                <label for="task-edit-name">New Name:</label>
+                                <input id="task-edit-name">
+
+                            </section>
+
+                            <section class="task-edit-description-container">
+
+                                <label>New Description:</label>
+                                <input id="task-edit-description">
+
+                            </section>
+
+                            <section class="task-edit-start-time-container">
+
+                                <label>New Start:</label>
+                                <input id="task-edit-start-time">
+
+                            </section>
+
+                            <section class="task-edit-end-time-container">
+
+                                <label>New End:</label>
+                                <input id="task-edit-end-time">
+
+                            </section>
+
+                            <section class="task-edit-color-container">
+
+                                <label>New Color:</label>
+                                <input id="task-edit-color">
+
+                            </section>
+
+                            <section class="task-edit-button-container">
+
+                                <button></button>
+                                <button></button>
+
+                            </section>
 
                         </form>
 
@@ -60,7 +98,6 @@
 
                 </section>
 
-            </section>
         </section>
 
     </section>
