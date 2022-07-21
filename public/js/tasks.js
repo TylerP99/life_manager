@@ -9,9 +9,10 @@ function openTaskCreation(event) {
 }
 
 // Opens and closes the Edit Task menu
-document.querySelector(".task-settings-button").addEventListener("click", openTaskRevision);
+document.querySelectorAll(".task-settings-button").forEach(x => x.addEventListener("click", openTaskRevision));
 
 function openTaskRevision(event) {
+    console.log("Click")
     const taskRevisionMenu = document.querySelector(".task-settings-container");
 
     toggle_hidden(taskRevisionMenu);
@@ -25,7 +26,7 @@ function toggle_hidden(elem)
 }
 
 // PUT Request for edit task
-document.querySelector("#task-edit-submit-button").addEventListener("click", send_edit_task_request)
+//document.querySelector("#task-edit-submit-button").addEventListener("click", send_edit_task_request)
 
 async function send_edit_task_request(event) {
     // Get task id
