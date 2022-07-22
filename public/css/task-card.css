@@ -72,6 +72,10 @@
 .task-settings {
 
 }
+.task-settings-options {
+    display: flex;
+    flex-direction: column;
+}
 .task-settings-button {
     width: 2rem;
 
@@ -104,9 +108,23 @@
     border: 1px solid;
 }
 
+/* .animate {
+    animation: open 1s forwards;
+} */
+
+@keyframes open {
+    from {
+        height: 0;
+    }
+    to {
+        height: auto;
+    }
+}
+
 @keyframes slideout {
     to {
         transform: translateX(-100%);
+        display: none;
     }
 }
 

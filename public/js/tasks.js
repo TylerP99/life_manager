@@ -21,8 +21,8 @@ function openTaskRevision(event) {
     const taskSettings = taskCard.querySelector(".task-settings-container");
 
     taskContent.classList.toggle("task-active");
-    taskSettings.classList.toggle("closed");
-    taskSettings.classList.toggle("open");
+    taskSettings.classList.toggle("closed")
+    taskSettings.classList.toggle("animate");
 
     // Second, task settings should open from above 
 }
