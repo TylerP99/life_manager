@@ -74,167 +74,17 @@ main {
     padding: 1rem 4rem;
     font-size: 2.5rem;
 }
-#signup-button {
-    background: rgb(167,199,231);
-    background: linear-gradient(173deg, rgba(167,199,231,1) 0%, rgba(255,255,255,1) 50%, rgba(167,199,231,1) 100%); 
-
-    border: 2px solid rgb(167,199,255);
+#signup-button, #signin-button {
+    background: #eee;
+   
+    border: 5px solid #ddd;
+    border-radius: 10px;
 }
-#signin-button {
-
+#signup-button:hover, #signin-button:hover {
+    background: #ddd;
 }
 
-#signup-button:hover {
-    background: rgb(255,250,160);
-    background: linear-gradient(173deg, rgba(255,250,160,1) 0%, rgba(255,255,255,1) 50%, rgba(255,250,160,1) 100%); 
-}
-#signin-button:hover {
-
-}
 
 .site-info-container {
     font-size: 2rem;
-}
-
-
-.circle {
-    border: 1px solid;
-    border-radius: 50%;
-    position: absolute;
-    z-index: -99;
-}
-
-.color1 {
-    background: #FF9AA2;
-}
-.color2 {
-    background: #FFB7B2;
-}
-.color3 {
-    background: #FFDAC1;
-}
-.color4 {
-    background: #E2F0CB;
-}
-.color5 {
-    background: #B5EAD7;
-}
-.color6 {
-    background: #CCF1FF;
-}
-.color7 {
-    background: #C7CEEA;
-}
-.color8 {
-    background: #E0D7FF;
-}
-
-.size1 {
-    height: 10px;
-    width: 10px;
-}
-.size2 {
-    height: 30px;
-    width: 30px;
-}
-.size3 {
-    height: 50px;
-    width: 50px;
-}
-.size4 {
-    height: 80px;
-    width: 80px;
-}
-.size5 {
-    height: 100px;
-    width: 100px;
-}
-.size6 {
-    height: 200px;
-    width: 200px;
-}
-.size7 {
-    height: 300px;
-    width: 300px;
-}
-
-.position1{
-    top: 0;
-    left: 0;
-}
-.position2{
-    top: 200px;
-    left: 200px;
-}
-.position3{
-    top: 600px;
-    left: 1200px;
-}
-.position4{
-    top: 300px;
-    left: 1500px;
-}
-.position5{
-    top: 0;
-    left: 0;
-}
-.position6{
-    top: 0;
-    left: 0;
-}
-.position7{
-    top: 0;
-    left: 0;
-}
-.position8{
-    top: 0;
-    left: 0;
-}
-.position9{
-    top: 0;
-    left: 0;
-}
-.position10{
-    top: 0;
-    left: 0;
-}
-.position11{
-    top: 0;
-    left: 0;
-}
-.position12{
-    top: 0;
-    left: 0;
-}
-.position13{
-    top: 0;
-    left: 0;
-}
-.position14{
-    top: 0;
-    left: 0;
-}
-.position15{
-    top: 0;
-    left: 0;
-}
-.position16{
-    top: 0;
-    left: 0;
-}
-.position17{
-    top: 0;
-    left: 0;
-}
-.position18{
-    top: 0;
-    left: 0;
-}
-.position19{
-    top: 900px;
-    left: 900px;
-}
-.position20{
-    top: 1000px;
-    left: 1000px;
 }
