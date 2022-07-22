@@ -6,98 +6,73 @@
 
             <div class="task-header-colorlead"></div>
             <h1><%= tasks[i].name %></h1>
+            <img class="task-settings-button" src="assets/settings-svgrepo-com.svg" alt="Settings button">
 
         </section>
 
-        <section class="task-description">
-            <p class="task-description-content"><%= tasks[i].description %></p>
+        <section class="task-content">
+            <section class="task-description">
+                <p class="task-description-content"><%= tasks[i].description %></p>
+            </section>
+
+            <section class="task-time">
+
+                <section class="task-start">
+                    <span><%=tasks[i].startDate%></span>
+                    <span><%=tasks[i].startTime%></span>
+                </section>
+
+                <section class="task-time-delimiter">
+                    <!--En dash (long -)-->
+                    <span>&#8211;</span>
+                </section>
+
+                <section class="task-end">
+                    <span><%=tasks[i].endDate%></span>
+                    <span><%=tasks[i].endTime %></span>
+                </section>
+
+            </section>
         </section>
 
-        <section class="task-time">
-
-            <section class="task-start">
-                <span><%=tasks[i].startDate%></span>
-                <span><%=tasks[i].startTime%></span>
+        <section class="task-settings-container closed">
+            <section class="task-settings-options">
+                <button>Edit Task</button>
+                <button>Delete Task</button>
             </section>
-
-            <section class="task-time-delimiter">
-                <!--En dash (long -)-->
-                <span>&#8211;</span>
+            <section class="task-edit hidden">
+                <form class="task-edit-form">
+                    <section class="task-edit-name-container">
+                        <label for="task-edit-name">New Name:</label>
+                        <input id="task-edit-name" placeholder="Enter new name here" type="text">
+                    </section>
+                    <section class="task-edit-description-container">
+                        <label>New Description:</label>
+                        <input id="task-edit-description" placeholder="Enter new description here" type="text">
+                    </section>
+                    <section class="task-edit-start-time-container">
+                        <label>New Start:</label>
+                        <input id="task-edit-start-time" type="datetime-local">
+                    </section>
+                    <section class="task-edit-end-time-container">
+                        <label>New End:</label>
+                        <input id="task-edit-end-time" type="datetime-local">
+                    </section>
+                    <section class="task-edit-color-container">
+                        <label>New Color:</label>
+                        <input id="task-edit-color" type="color">
+                    </section>
+                    <section class="task-edit-button-container">
+                        <button>Confirm Changes</button>
+                        <button>Reset</button>
+                    </section>
+                </form>
             </section>
-
-            <section class="task-end">
-                <span><%=tasks[i].endDate%></span>
-                <span><%=tasks[i].endTime %></span>
-            </section>
-
         </section>
+
 
         <section class="task-complete">
             <button type="button">Mark as Complete</button>
-        </section>
-
-        <section class="task-settings">
-            <img class="task-settings-button" src="assets/settings-svgrepo-com.svg" alt="Settings button">
-            
-                <section class="task-settings-container hidden">
-
-                    <section class="task-settings-options">
-                        <button>Edit Task</button>
-                        <button>Delete Task</button>
-                    </section>
-
-                    <section class="task-edit">
-                        
-                        <form class="task-edit-form">
-
-                            <section class="task-edit-name-container">
-
-                                <label for="task-edit-name">New Name:</label>
-                                <input id="task-edit-name" placeholder="Enter new name here" type="text">
-
-                            </section>
-
-                            <section class="task-edit-description-container">
-
-                                <label>New Description:</label>
-                                <input id="task-edit-description" placeholder="Enter new description here" type="text">
-
-                            </section>
-
-                            <section class="task-edit-start-time-container">
-
-                                <label>New Start:</label>
-                                <input id="task-edit-start-time" type="datetime-local">
-
-                            </section>
-
-                            <section class="task-edit-end-time-container">
-
-                                <label>New End:</label>
-                                <input id="task-edit-end-time" type="datetime-local">
-
-                            </section>
-
-                            <section class="task-edit-color-container">
-
-                                <label>New Color:</label>
-                                <input id="task-edit-color" type="color">
-
-                            </section>
-
-                            <section class="task-edit-button-container">
-
-                                <button>Confirm Changes</button>
-                                <button>Reset</button>
-
-                            </section>
-
-                        </form>
-
-                    </section>
-
-                </section>
-
         </section>
 
     </section>

@@ -11,11 +11,20 @@ function openTaskCreation(event) {
 // Opens and closes the Edit Task menu
 document.querySelectorAll(".task-settings-button").forEach(x => x.addEventListener("click", openTaskRevision));
 
+// Occurs when the task settings button is clicked
 function openTaskRevision(event) {
-    console.log("Click")
-    const taskRevisionMenu = document.querySelector(".task-settings-container");
+    // Get task card from event
+    const taskCard = event.target.parentElement.parentElement;
 
-    toggle_hidden(taskRevisionMenu);
+    // First, task content should fly to the left (header is not task content)
+    const taskContent = taskCard.querySelector(".task-content");
+    const taskSettings = taskCard.querySelector(".task-settings-container");
+
+    taskContent.classList.toggle("task-active");
+    taskSettings.classList.toggle("closed");
+    taskSettings.classList.toggle("open");
+
+    // Second, task settings should open from above 
 }
 
 // Opens or hides target element
