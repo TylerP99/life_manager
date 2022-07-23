@@ -17,8 +17,6 @@
     justify-content: space-between;
 
     width: 100%;
-
-    border: 1px solid;
 }
 .task-header-colorlead {
     height: 3rem;
@@ -94,7 +92,7 @@
     
 }
 .task-active {
-    animation: slideout 1s forwards;
+    animation: slideout 0.5s forwards;
 }
 
 .closed {
