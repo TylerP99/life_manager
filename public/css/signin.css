@@ -43,6 +43,10 @@ h1 {
 #signin-form > * {
     margin-bottom: 2rem;
 }
+#signin-form > section {
+    display: flex;
+    flex-direction: column;
+}
 
 p, label {
     font-size: 2rem;

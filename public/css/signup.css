@@ -43,6 +43,10 @@ h1 {
 #signup-form > * {
     margin-bottom: 2rem;
 }
+#signup-form > section {
+    display: flex;
+    flex-direction: column;
+}
 
 p, label {
     font-size: 2rem;
