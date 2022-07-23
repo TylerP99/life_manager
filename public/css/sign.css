@@ -65,3 +65,21 @@ main form > section {
 main {
     font-size: 1.6rem;
 }
+
+button {
+    background: #eee;
+    border: 2px solid #ddd;
+    border-radius: 2px;
+}
+
+button:hover {
+    background: #ddd;
+}
+
+p {
+    margin-bottom: 2rem;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
