@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/signin.css">
+    <link rel="stylesheet" href="/css/sign.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -18,22 +18,24 @@
     <main>
         <h1>Sign In</h1>
 
-        <form action="/api/account/authenticate" method="post" id="signin-form">
-            <section>
-                <label for="email">Email</label>
-                <input type="email" id="email field" name="email" placeholder="Email" required autocomplete="email">
-            </section>
-            <section>
-                <label for="password">Password</label>
-                <input type="password" id="passwordField" name="password" placeholder="Password" required autocomplete="new-password">
-            </section>
-            <section>
-                <button type="submit">Sign In</button>
-            </section>
-        </form>
+        <section>
+            <form action="/api/account/authenticate" method="post" id="signin-form">
+                <section>
+                    <label for="email">Email</label>
+                    <input type="email" id="email field" name="email" placeholder="Email" required autocomplete="email">
+                </section>
+                <section>
+                    <label for="password">Password</label>
+                    <input type="password" id="passwordField" name="password" placeholder="Password" required autocomplete="new-password">
+                </section>
+                <section>
+                    <button type="submit">Sign In</button>
+                </section>
+            </form>
 
-        <p>Don't have an account? <a href="/user/signup">Register here</a></p>
-        <p>Forgot account details? <a href="#">Go Here</a></p>
+            <p>Don't have an account? <a href="/user/signup">Register here</a></p>
+            <p>Forgot account details? <a href="#">Go Here</a></p>
+        </section>
     </main>
      
 </body>
