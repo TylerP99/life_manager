@@ -79,6 +79,13 @@ router.delete("/delete", ensureAuthenticated, async (req, res) => {
 
 function validate_new_task(task)
 {
+    // Check name
+
+    // Check description
+
+    // Check dates
+    // Rules for dates: 
+    // Cannot create a task before current day
     return true;
 }
 
