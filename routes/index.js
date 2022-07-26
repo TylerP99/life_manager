@@ -48,8 +48,4 @@ router.get("/tasks", ensureAuthenticated, async (req, res) => {
     res.render("tasks.ejs", {tasks: updatedTasks, user: req.user});
 });
 
-router.get("/storagemanagement", ensureAuthenticated, (req, res) => {
-    res.render("storage.ejs", {user: req.user});
-});
-
 module.exports = router;
