@@ -1,6 +1,13 @@
+/*==================================================================================*/
+/* Client Side Task Page Logic
+/*
+/*
+/*
+/*==================================================================================*/
+
+
 // Opens and closes the Create Task menu
 document.querySelector("#add-task").addEventListener("click", openTaskCreation);
-
 
 function openTaskCreation(event) {
     const taskCreationMenu = document.querySelector("#add-task-menu");
@@ -8,8 +15,10 @@ function openTaskCreation(event) {
     toggle_hidden(taskCreationMenu);
 }
 
+
 // Opens and closes the Edit Task menu
-document.querySelectorAll(".task-settings-button").forEach(x => x.addEventListener("click", openTaskRevision));
+document.querySelectorAll(".task-settings-button") 
+.forEach(x => x.addEventListener("click", openTaskRevision));
 
 // Occurs when the task settings button is clicked
 function openTaskRevision(event) {
@@ -83,3 +92,15 @@ async function send_delete_task_request(event)
 }
 
 console.log("Linked")
+
+
+// Checks if the entered task is valid based on provided rules, returns object containing issues, or empty object if no issues
+function validate_task(task) {
+    // Check task name
+
+    // Check task description
+
+    // Check task start time
+
+    // Check task end time
+}
