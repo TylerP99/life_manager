@@ -111,19 +111,19 @@ p:last-child {
 }
 
 .confirmation-error {
-    background: red;
+    background: rgba(255,154,162,1);
 }
 
 .confirmation-success {
-    background: green
+    background: rgba(181,234,215,1);
 }
 
 .valid {
-    box-shadow: 0 0 0 5px green;
+    box-shadow: 0 0 0 5px rgba(181,234,215,1);
 }
 
 .invalid {
-    box-shadow: 0 0 0 5px red;
+    box-shadow: 0 0 0 5px rgba(255,154,162,1);
 }
 
 .hidden {
