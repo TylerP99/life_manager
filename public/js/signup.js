@@ -15,11 +15,9 @@ const formSubmitButton = document.querySelector("#submitButton");
 /*===========================================*/
 // Get password fields
 const passwordField = document.querySelector("#passwordField");
-const passwordConfirmationField = document.querySelector("#passwordConfField");
 
 // Get constraints lists
 const passwordConstraintList = document.querySelector(".password-constraints");
-const passwordConfConstraintsList = document.querySelector(".password-conf-constraints");
 
 // When the password field is selected, the constraints list should open up
 passwordField.addEventListener("focus", open_password_constraints);
@@ -39,7 +37,6 @@ function open_password_constraints() {
 function close_password_constraints() {
     passwordConstraintList.classList.add("hidden")
 }
-
 function validate_password() {
     // Provide feedback while entering password
     const password = passwordField.value;
@@ -60,5 +57,48 @@ function validate_password() {
 
         passwordField.classList.remove("invalid");
         passwordField.classList.add("valid");
+    }
+    validate_password_conf();
+}
+
+
+/*===========================================*/
+/*     Password Confirmation Validation      */
+/*===========================================*/
+const passwordConfirmationField = document.querySelector("#passwordConfField");
+const passwordConfConstraintsList = document.querySelector(".password-conf-constraints");
+
+passwordConfirmationField.addEventListener("focus", open_password_conf_constraints);
+passwordConfirmationField.addEventListener("blur", close_password_conf_constraints);
+
+passwordConfirmationField.addEventListener("input", validate_password_conf);
+
+function open_password_conf_constraints() {
+    passwordConfConstraintsList.classList.remove("hidden");
+}
+function close_password_conf_constraints() {
+    passwordConfConstraintsList.classList.add("hidden")
+}
+function validate_password_conf() {
+    // Provide feedback while entering password
+    const password = passwordField.value;
+    const passwordConf = passwordConfirmationField.value;
+    const matchValidationIcon = passwordConfConstraintsList.querySelector(".confirmation-icon");
+
+    if(password !== passwordConf)
+    {
+        matchValidationIcon.classList.remove("confirmation-success");
+        matchValidationIcon.classList.add("confirmation-error");
+
+        passwordConfirmationField.classList.add("invalid");
+        passwordConfirmationField.classList.remove("valid");
+    }
+    else
+    {
+        matchValidationIcon.classList.add("confirmation-success");
+        matchValidationIcon.classList.remove("confirmation-error");
+
+        passwordConfirmationField.classList.remove("invalid");
+        passwordConfirmationField.classList.add("valid");
     }
 }
