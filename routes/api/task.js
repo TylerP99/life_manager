@@ -80,12 +80,29 @@ router.delete("/delete", ensureAuthenticated, async (req, res) => {
 function validate_new_task(task)
 {
     // Check name
+    if(task.name == "")
+    {
+        // Empty, should be set to a default name
+    }
+    if(task.name.length > 50)
+    {
+        // Too Long
+    }
 
     // Check description
+    if(task.description.length > 250)
+    {
+        // Desc too long, dont need more than the length of a tweet bro
+    }
 
     // Check dates
     // Rules for dates: 
     // Cannot create a task before current day
+    const currentTime = Date.now();
+
+    if(task.startTime)
+
+
     return true;
 }
 
