@@ -24,12 +24,7 @@ const passport = require("passport");
 //Registration Request
 router.post("/create", async (req,res) => {
     // Get form data from request
-    const userData = {
-        username:req.body.username,
-        email:req.body.email,
-        password:req.body.password,
-        passwordConfirmation:req.body.passwordConf,
-    }
+    const userData = req.body.account;
 
     const validation_obj = await validate_user_info(userData)
     let valid = validation_obj.isValid;
@@ -46,7 +41,7 @@ router.post("/create", async (req,res) => {
 
             // Add user object to database
             await User.create({name:userData.username, email:userData.email, password:userData.password});
-            res.redirect("/user/signin");
+            res.json(validation_obj);
         });
     }
     else

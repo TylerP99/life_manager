@@ -17,34 +17,48 @@
         <section>
             <form action="/api/account/create" method="post" id="signup-form">
 
-                <section>
+                <p>All fields required</p>
+
+                <section class="field-container">
                     <label for="username">Name:</label>
+                    <ul class="field-info-container name-constraints hidden">
+                        <li>
+                            <div class="confirmation-icon"></div>
+                            <p class="constraint">Can be reused</p>
+                        </li>
+                    </ul>
                     <input type="text" id="usernameField" name="username" placeholder="Name" required>
                 </section>
-                <section>
+                <section class="field-container">
                     <label for="email">Email:</label>
+                    <ul class="field-info-container email-constraints hidden">
+                        <li>
+                            <div class="confirmation-icon"></div>
+                            <p class="constraint">Must be unique</p>
+                        </li>
+                    </ul>
                     <input type="email" id="emailField" name="email" placeholder="Email" required >
                 </section>
-                <section>
+                <section class="field-container">
                     <label for="password">Password:</label>
+                    <ul class="field-info-container password-constraints hidden">
+                        <li>
+                            <div class="confirmation-icon"></div>
+                            <p class="constraint">Must be at least 8 characters</p>
+                        </li>
+                    </ul>
                     <input type="password" id="passwordField" name="password" placeholder="Password" required  minlength="8">
                 </section>
-                <ul class="password-constraints hidden">
-                    <li>
-                        <div class="confirmation-icon"></div>
-                        <p class="constraint">Must be at least 8 characters</p>
-                    </li>
-                </ul>
-                <section>
+                <section class="field-container">
                     <label for="passwordConf">Confirm Password:</label>
+                    <ul class="field-info-container password-conf-constraints">
+                        <li>
+                            <div class="confirmation-icon"></div>
+                            <p class="constraint">Passwords must match</p>
+                        </li>
+                    </ul>
                     <input type="password" id="passwordConfField" name="passwordConf" placeholder="Re-enter password" required>
                 </section>
-                <ul class="password-conf-constraints hidden">
-                    <li>
-                        <div class="confirmation-icon"></div>
-                        <p class="constraint">Passwords must match</p>
-                    </li>
-                </ul>
                 <section>
                     <button id="submitButton" type="submit">Sign Up</button>
                 </section>

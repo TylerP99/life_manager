@@ -7,8 +7,6 @@ const usernameField = document.querySelector("#usernameField");
 
 const emailField = document.querySelector("#emailField");
 
-const formSubmitButton = document.querySelector("#submitButton");
-
 
 /*===========================================*/
 /*            Password Validation            */
@@ -102,3 +100,55 @@ function validate_password_conf() {
         passwordConfirmationField.classList.add("valid");
     }
 }
+
+
+/*===========================================*/
+/*    Sign Up Form Submit Request Handler    */
+/*===========================================*/
+const form = document.querySelector("form");
+const formSubmitButton = document.querySelector("#submitButton");
+
+form.addEventListener("submit", submit_form);
+
+async function submit_form(event) {
+    event.preventDefault();
+
+    const account = {
+        username: usernameField.value,
+        email: emailField.value,
+        password: passwordField.value,
+        passwordConfirmation: passwordConfirmationField.value,
+    }
+
+    // Send form via post request
+    try{
+        console.log("Sending req")
+        const res = await fetch(
+            "/api/account/create",
+            {
+                method: "post",
+                headers: {
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify({
+                    account:account
+                })
+            }
+        )
+
+        const data = await res.json();
+        
+        if(!data.isValid)
+        {
+            // Display errors
+        }
+        else
+        {
+            // Success, then redirect
+        }
+    }
+    catch(e){
+        console.error(e);
+    }
+}
+
