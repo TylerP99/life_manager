@@ -18,6 +18,17 @@ function close_username_constraints() {
     usernameConstraintList.classList.add("hidden");
 }
 
+function  validate_username() {
+    if(usernameField.value == "")
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
 
 /*===========================================*/
 /*              Email Validation             */
@@ -35,6 +46,17 @@ function open_email_constraints() {
 
 function close_email_constraints() {
     emailConstraintList.classList.add("hidden");
+}
+
+function validate_email() {
+    if(emailField.value == "")
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 /*===========================================*/
@@ -68,9 +90,11 @@ function validate_password() {
     // Provide feedback while entering password
     const password = passwordField.value;
     const lengthValidationIcon = passwordConstraintList.querySelector(".confirmation-icon");
+    let valid = false;
 
     if(password.length < 8)
     {
+        //Invalid
         lengthValidationIcon.classList.remove("confirmation-success");
         lengthValidationIcon.classList.add("confirmation-error");
 
@@ -79,13 +103,15 @@ function validate_password() {
     }
     else
     {
+        //Valid
         lengthValidationIcon.classList.add("confirmation-success");
         lengthValidationIcon.classList.remove("confirmation-error");
 
         passwordField.classList.remove("invalid");
         passwordField.classList.add("valid");
+        valid = true;
     }
-    validate_password_conf();
+    return validate_password_conf() && valid;
 }
 
 
@@ -114,19 +140,25 @@ function validate_password_conf() {
 
     if(password !== passwordConf)
     {
+        //Invalid
         matchValidationIcon.classList.remove("confirmation-success");
         matchValidationIcon.classList.add("confirmation-error");
 
         passwordConfirmationField.classList.add("invalid");
         passwordConfirmationField.classList.remove("valid");
+
+        return false;
     }
     else
     {
+        //Valid
         matchValidationIcon.classList.add("confirmation-success");
         matchValidationIcon.classList.remove("confirmation-error");
 
         passwordConfirmationField.classList.remove("invalid");
         passwordConfirmationField.classList.add("valid");
+
+        return true;
     }
 }
 
@@ -136,8 +168,24 @@ function validate_password_conf() {
 /*===========================================*/
 const form = document.querySelector("form");
 const formSubmitButton = document.querySelector("#submitButton");
+formSubmitButton.disabled = true;
 
 form.addEventListener("submit", submit_form);
+
+const allFields = [usernameField, emailField, passwordField, passwordConfirmationField]
+allFields.forEach( x => x.addEventListener("change", validate_all));
+
+function validate_all() {
+    const valid = validate_username() && validate_email() && validate_password() && validate_password_conf();
+
+    if(valid) {
+        formSubmitButton.disabled = false;
+    }
+    else
+    {
+        formSubmitButton.disabled = true;
+    }
+}
 
 async function submit_form(event) {
     event.preventDefault();
@@ -170,10 +218,13 @@ async function submit_form(event) {
         if(!data.isValid)
         {
             // Display errors
+            console.log(data);
         }
         else
         {
             // Success, then redirect
+            console.log("Redirecting...");
+            window.location.replace("/user/signin");
         }
     }
     catch(e){
