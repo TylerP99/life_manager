@@ -1,12 +1,41 @@
 // Separate file for validating new user info before sending to server (also validated on server side)
 
-console.log("Linked");
-
-// Get all the important form elements
+/*===========================================*/
+/*            Username Validation            */
+/*===========================================*/
 const usernameField = document.querySelector("#usernameField");
 
+const usernameConstraintList = document.querySelector(".username-constraints");
+
+usernameField.addEventListener("focus", open_username_constraints);
+usernameField.addEventListener("blur", close_username_constraints);
+
+function open_username_constraints() {
+    usernameConstraintList.classList.remove("hidden");
+}
+
+function close_username_constraints() {
+    usernameConstraintList.classList.add("hidden");
+}
+
+
+/*===========================================*/
+/*              Email Validation             */
+/*===========================================*/
 const emailField = document.querySelector("#emailField");
 
+const emailConstraintList = document.querySelector(".email-constraints");
+
+emailField.addEventListener("focus", open_email_constraints);
+emailField.addEventListener("blur", close_email_constraints);
+
+function open_email_constraints() {
+    emailConstraintList.classList.remove("hidden");
+}
+
+function close_email_constraints() {
+    emailConstraintList.classList.add("hidden");
+}
 
 /*===========================================*/
 /*            Password Validation            */
