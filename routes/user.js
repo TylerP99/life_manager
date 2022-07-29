@@ -27,7 +27,16 @@ router.get("/signup", forwardAuthenticated, (req,res) => {
 
 // Sign in page
 router.get("/signin", forwardAuthenticated, (req, res) => {
-    res.render("signin");
+    let error = "";
+
+    console.log(req.session);
+
+    if(req.session.messages != undefined)
+    {
+        error = req.session.messages[0];
+    }
+
+    res.render("signin", {error});
 });
 
 //==============================//
@@ -35,9 +44,7 @@ router.get("/signin", forwardAuthenticated, (req, res) => {
 //==============================//
 
 router.get("user/logout", (req, res) => {
-    console.log("Logging out");
     req.logout();
-    req.flash('success_msg', "You have been logged out!");
 });
 
 module.exports = router;

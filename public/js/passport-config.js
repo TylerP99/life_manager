@@ -8,6 +8,8 @@ module.exports = function init_passport(passport) {
             const user = await db.collection(userCollection)
                                 .findOne({"email": email});
 
+            console.log(user);
+
             if(user)
             {
                 // User exists

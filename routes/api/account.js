@@ -131,7 +131,7 @@ async function validate_user_info(user) {
 router.post("/authenticate", passport.authenticate("local", {
     successRedirect:"/dashboard",
     failureRedirect:"/user/signin",
-    failureFlash:true,
+    failureMessage:true,
 })
 );
 
